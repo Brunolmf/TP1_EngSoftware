@@ -1,0 +1,26 @@
+# Arquivos de Segurança e Senhas (O MAIS IMPORTANTE!)
+.env
+
+# Ambientes Virtuais Python
+venv/
+env/
+.venv/
+
+# Arquivos de Banco de Dados Locais (do nosso teste inicial)
+*.db
+*.sqlite3
+instance/
+
+# Arquivos temporários e de cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de sistema operacional (Mac/Windows)
+.DS_Store
+Thumbs.db
+
+# Pastas de Editores de Código (VS Code, PyCharm, etc)
+.vscode/
+.idea/

@@ -18,7 +18,7 @@ db.init_app(app)
 # Cria as tabelas fisicamente lá no Neon
 with app.app_context():
     db.create_all()
-    print("🍻 Conectado ao Neon! Tabelas do Saideira criadas/verificadas com sucesso na nuvem.")
+    print("Conectado ao Neon! Tabelas do Saideira criadas/verificadas com sucesso na nuvem.")
 
 @app.route('/')
 def home():
