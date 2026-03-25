@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from dotenv import load_dotenv
 from models import db
 
@@ -22,7 +22,7 @@ with app.app_context():
 
 @app.route('/')
 def home():
-    return "Bem-vindo ao Saideira! O boteco tá aberto na nuvem."
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
