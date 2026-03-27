@@ -1,0 +1,642 @@
+[
+    {
+        "nome": "222",
+        "endereco": "R. Francisco Deslandes, 222 |Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09110856/222_buraquimquente_bh_2026_pauloti_unibh-4859.jpg"
+    },
+    {
+        "nome": "ALEXANDRE’S BAR",
+        "endereco": "R. David Alves do Vale, 68 | Santa Rosa, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09110859/alexandresbar_porcoamostarda_pauloti_unibh-3271.jpg"
+    },
+    {
+        "nome": "ANDRADE’S BEER",
+        "endereco": "R. Dona Geni, 32 | Maria Helena, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09110901/andradesbeer_ossadinhaatolada_bh_2026_rodneycosta_unibh-4615.jpg"
+    },
+    {
+        "nome": "ARMAZÉM SANTA AMÉLIA",
+        "endereco": "Rua da Sinfonia, 253 | Santa Amélia, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09110903/armazemsantaamelia_chucretedemineiro_bh_2026_rodneycosta_unibh-3650.jpg"
+    },
+    {
+        "nome": "AVALANCHE BAR E RESTAURANTE",
+        "endereco": "R. Doutor Álvaro Camargos, 1113 | São Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111005/avalancheespeteria_nopeitonaraiz_bh_2026_pauloti_unibh-4514.jpg"
+    },
+    {
+        "nome": "AZOUGUE FOGO E BAR",
+        "endereco": "Rua do Ouro, 835 | Serra, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111007/azouquefogobar_oncoto_bh_2026_rodneycosta_unibh-4638.jpg"
+    },
+    {
+        "nome": "BAIÚCA",
+        "endereco": "R. Piauí, 1884 | Funcionários, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111008/baiuca_pastelpeganoporo_bh_2026_pauloti_unibh-4013.jpg"
+    },
+    {
+        "nome": "BAR BAMBÚ",
+        "endereco": "R. Divisa Nova, 670 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111012/barbambu_tocomnagunamao_bh_2026_isaquerodrigues_unibh-3461.jpg"
+    },
+    {
+        "nome": "BAR BENDITA BADERNA",
+        "endereco": "R. Silva Fortes, 47 | União, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111113/barbenditabaderna_benditaporpeta_bh_2026_pauloti_unibh-5051.jpg"
+    },
+    {
+        "nome": "BAR DA CINTIA",
+        "endereco": "R. Pastor Rui Franco, 257 | São João Batista (Venda Nova), Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111115/bardacintia_chuletadescontraida_bh_2026_pauloti_unibh-5257.jpg"
+    },
+    {
+        "nome": "BAR DA FIA",
+        "endereco": "R. dos Astecas, 2722 | Santa Mônica, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111117/bardafia_lomboquentecoracaomole_vicentealexandre_unibh-3148.jpg"
+    },
+    {
+        "nome": "BAR DA GISA",
+        "endereco": "Rua Maria Ferreira da Silva, 367 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111119/bardagisa_ajoelhoutemquerezar_giovanaevilyn_unibh-3157.jpg"
+    },
+    {
+        "nome": "REFORMA BAR",
+        "endereco": "Rua Joaquim Nabuco, 577 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113306/barreforma_maviadastrouxas_bh_2026_rodneycosta_unibh-4343.jpg"
+    },
+    {
+        "nome": "REI DA PICANHA",
+        "endereco": "Avenida Sebastião de Brito, 400 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113307/reidapicanha_depicanhacaomavida_bh_2026_pauloti_unibh-4527.jpg"
+    },
+    {
+        "nome": "REI DO PEIXE",
+        "endereco": "R. Ramalho Ortigão, 735 | Santa Branca, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113409/reidopeixe_polpettasdorei_bh_2026_pauloti_unibh-4918.jpg"
+    },
+    {
+        "nome": "RESENHA DA NATY",
+        "endereco": "R. Gonçalves Lêdo, 288 | Cachoeirinha, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113411/resenhadanaty_podecomerquenaoepecado_bh_2026_rodneycosta_unibh-4649.jpg"
+    },
+    {
+        "nome": "S.O.S PUB",
+        "endereco": "Avenida Padre José Maurício, 1126 | Vista Alegre, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113413/sospub_boienrolado_bh_2026_rodneycosta_unibh-5057.jpg"
+    },
+    {
+        "nome": "SANT’ESQUINA BUTIQUIM",
+        "endereco": "Rua Ramalho Ortigão, 650 |Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113414/santesquinabutequim_atoladimdeboibebum_bh_2026_pauloti_unibh-3975.jpg"
+    },
+    {
+        "nome": "SANTA BOEMIA",
+        "endereco": "R. Mármore, 534 | Santa Teresa, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113416/santaboemia_mamamia_bh_2026_rodneycosta_unibh-4596.jpg"
+    },
+    {
+        "nome": "SANTUÁRIO RETRÔ",
+        "endereco": "Av. Padre Vieira, 150 | Minas Brasil, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113518/santuarioretro_dugibi_bh_2026_pauloti_unibh-4873.jpg"
+    },
+    {
+        "nome": "SEU JUSTINO",
+        "endereco": "Rua Dona Conceição Martins, 63 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113520/seujustino_roledojustino_fernandaoliveira_unibh-3183.jpg"
+    },
+    {
+        "nome": "SÔ BAR",
+        "endereco": "Av. Altamiro Avelino Soares, 426 | Castelo, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113521/sobar_sovem_bh_2026_pauloti_unibh-5007.jpg"
+    },
+    {
+        "nome": "SPETIM",
+        "endereco": "R. Ilacir Pereira Lima, 518 | Silveira, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113523/spetim_donafarofaesrporquinho_bh_2026_pauloti_unibh-5204.jpg"
+    },
+    {
+        "nome": "SUNSET BAR",
+        "endereco": "R. Érico Veríssimo, 2039 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113525/sunsetbar_costelaveiadeguerra_bh_2026_rodneycosta_unibh-3325.jpg"
+    },
+    {
+        "nome": "TANGANICA ART BAR",
+        "endereco": "R. Padre Demerval Gomes, 380 | Coração Eucarístico, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113626/tanganica_triovegano_bh_2026_pauloti_unibh-4057.jpg"
+    },
+    {
+        "nome": "TOCA DO OGRO",
+        "endereco": "R. Professor Nelson de Sena, 4 | Pampulha, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113628/tocadoogro_triodaroca_bh_2026_rodneycosta_unibh-3916.jpg"
+    },
+    {
+        "nome": "TONINHO – ALTO FORNO",
+        "endereco": "R. Miracema, 100 | Santo André, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113630/bartoninhoaltoforno_penorabo_bh_2026_pauloti_unibh-5193.jpg"
+    },
+    {
+        "nome": "US MOTOCA",
+        "endereco": "R. Blenda, 91 | Camargos, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113632/usmotoca_risotomineiro_bh_2026_rodneycosta_unibh-4269.jpg"
+    },
+    {
+        "nome": "VIA DESLANDES",
+        "endereco": "Rua Francisco Deslandes, 10 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113633/viadeslandes_dijoelho_bh_2026_pauloti_unibh-4933.jpg"
+    },
+    {
+        "nome": "XAMBAR",
+        "endereco": "Av. Augusto de Lima, 233 - Edifício Maleta | Centro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113736/xambar_escondeesconde_bh_2026_rodneycosta_unibh-4581.jpg"
+    },
+    {
+        "nome": "ZÉ BOLACHA",
+        "endereco": "Rua das Melancias, 35 | Vila Clóris, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113737/zebolachabar_menudosgerais_bh_2026_pauloti_unibh-5144.jpg"
+    },
+    {
+        "nome": "ZOO BAR",
+        "endereco": "Av. Otacílio Negrão de Lima, 7844 | Pampulha, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113739/zoobar_procoro_bh_2026_rodneycosta_unibh-4379.jpg"
+    },
+    {
+        "nome": "BAR DA LU",
+        "endereco": "R. Geralda Marinho, 41 | São João Batista (Venda Nova), Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111121/bardalu_popeyemineiro_bh_2026_rodneycosta_unibh-4185.jpg"
+    },
+    {
+        "nome": "BAR DA PRAÇA",
+        "endereco": "Rua Oeste, 517 | Calafate, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111222/bardapraca_cadimdenos_bh_2026_pauloti_unibh-4502.jpg"
+    },
+    {
+        "nome": "BAR DA SILVÂNIA",
+        "endereco": "R. Soares Nogueira, 801 | Camargos, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111224/bardasilvania_tesourocaipiracomencantodahorta_bh_2026_giovanaevelyn_unibh-3364.jpg"
+    },
+    {
+        "nome": "BAR DO BARTOLOMEU",
+        "endereco": "R. Arthur Luchesi, 356 | Santa Helena (Barreiro), Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111226/bardobartolomeu_triomineirobaodemais_bh_2026_rodneycosta_unibh-4207.jpg"
+    },
+    {
+        "nome": "BAR DO BEM",
+        "endereco": "Rua Vicentina Coutinho Camargos, 100 | Álvaro Camargos, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111228/bardobem_brsileirinhoraiz_bh_2026_rodneycosta_unibh-5080.jpg"
+    },
+    {
+        "nome": "BAR DO DEDINHO",
+        "endereco": "Avenida Guarapari, 872 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111229/bardodedinho_kafteivossamensagem_bh_2026_isabelaaraujo_unibh-3503.jpg"
+    },
+    {
+        "nome": "BAR DO JOÃO (SÃO JOÃO BATISTA)",
+        "endereco": "R. Geralda Marinho, 117 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111331/bardojoao_nabocadopovo_bh_2026_rodneycosta_unibh-4472.jpg"
+    },
+    {
+        "nome": "BAR DO KIM",
+        "endereco": "Rua Júlio de Castilho, 1071 | Palmeiras, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111333/bardokim_fraldinhasupreme_bh_2026_pauloti_unibh-4724.jpg"
+    },
+    {
+        "nome": "BAR DO MOMÔ",
+        "endereco": "Avenida Coronel José Benjamim, 777 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111335/bardomomo_esferasuina_rodneycosta_unibh-3114.jpg"
+    },
+    {
+        "nome": "BAR DO NELSON",
+        "endereco": "R. Vicente Risola, 1000 | Santa Inês, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111336/bardonelson_brasileirinho_bh_2026_rodneycosta_unibh-4559.jpg"
+    },
+    {
+        "nome": "BAR DO PEIXINHO",
+        "endereco": "Avenida Bernardo de Vasconcelos, 1824 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111338/bardopeixinho_tilapiaroletera_bh_2026_isaquerodrigues_unibh-3830.jpg"
+    },
+    {
+        "nome": "BAR DO PRIMO",
+        "endereco": "Avenida Amazonas, 4649 | Nova Suíça, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/16114137/whatsapp-image-2026-03-16-at-14.39.03.jpeg"
+    },
+    {
+        "nome": "BAR DO REGIS",
+        "endereco": "R. Gávea, 422 | Jardim América, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111441/bardoregis_leilaoeevanoparaiso_bh_2026_giovanaevelyn_unibh-3344.jpg"
+    },
+    {
+        "nome": "BAR DO TIÃO",
+        "endereco": "Avenida Doutor Cristiano Guimarães, 2570 | Planalto, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/25074325/tiaovei_2026_belohorizonte.jpg"
+    },
+    {
+        "nome": "BAR DOS MENINOS",
+        "endereco": "Rua Lindolfo Deodoro, 503 - A | Salgado Filho, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111445/bardosmeninos_acopaenossa_bh_2026_pauloti_unibh-4886.jpg"
+    },
+    {
+        "nome": "BAR DU DU",
+        "endereco": "R. Vinte e Oito de Setembro, 229 | Esplanada, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111447/bardudu_atequemnaogostacome_bh_2026_pauloti_unibh-4066.jpg"
+    },
+    {
+        "nome": "BAR DU MAGRELO",
+        "endereco": "Rua São Felipe, 21 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111548/bardomagrelo_canelasuada_bh_2026_pauloti_unibh-3415.jpg"
+    },
+    {
+        "nome": "BAR E RESTAURANTE BOM SABOR",
+        "endereco": "R. Java, 386 | Nova Suíça, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111010/bomsabor_saboresdaroca_bh_2026_pauloti_unibh-5218.jpg"
+    },
+    {
+        "nome": "BAR E RESTAURANTE DO BRANCO",
+        "endereco": "Rua Pitangui, 3197 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111549/bardobranco_bemcasado_bh_2026_isaquerodrigues_unibh-3534.jpg"
+    },
+    {
+        "nome": "BAR ESTABELECIMENTO",
+        "endereco": "R. Monte Alegre, 160 | Serra, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111551/barestabelecimento_comabarriganofogo_bh_2026_rodneycosta_unibh-5068.jpg"
+    },
+    {
+        "nome": "BAR JUNTO JUNTINHO",
+        "endereco": "Rua Cura D’Ars, 542 | Prado, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111553/juntojuntinho_marinheiropopeye_bh_2026_julianunes_unibh-3395.jpg"
+    },
+    {
+        "nome": "BAR MANIA MINEIRA",
+        "endereco": "Rua Paracatu, 1099 | Santo Agostinho, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111555/maniamineira_joelhodavovopig_bh_2026_pauloti_unibh-3996.jpg"
+    },
+    {
+        "nome": "BAR POMPÉU",
+        "endereco": "R. São Miguel, 779 - antigo 1243 | Itapoã, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111656/barpompeu_porquinhomelado_isabelaaraujo_unibh-3547.jpg"
+    },
+    {
+        "nome": "BAR STELLA",
+        "endereco": "Av. Saramenha, 1599 | Guarani, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111658/barstellaoficial_porcoamineira_bh_2026_rodneycosta_unibh-4700.jpg"
+    },
+    {
+        "nome": "BAR TEMÁTICO STA. TERESA",
+        "endereco": "R. Pirite, 187 | Santa Teresa, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111700/bartematico_osegredodaforcadolampiao_bh_2026_rodneycosta_unibh-4664.jpg"
+    },
+    {
+        "nome": "BARRIGUDINHA BUTECO",
+        "endereco": "Av. dos Engenheiros, 1071 | Alípio de Melo, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111702/barrigudinha_flordeminas_bh_2026_luizafernandes_unibh-3472.jpg"
+    },
+    {
+        "nome": "BARZIM DOS AMIGOS",
+        "endereco": "R. Lindolfo de Azevedo, 1263 | Jardim América, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111704/barzimdosamigos_penaroca_bh_2026_joaovictor_unibh-3489.jpg"
+    },
+    {
+        "nome": "BAZIN BAR",
+        "endereco": "R. Min. Orozimbo Nonato, 1053| Dona Clara, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111805/bazim_conceicao_bh_2026_pauloti_unibh-4811.jpg"
+    },
+    {
+        "nome": "BECO RESTAURANTE",
+        "endereco": "R. dos Tamoios, 232 | Centro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111807/becorestaurante_verdequetequerorabo_bh_2026_pauloti_unibh-4495.jpg"
+    },
+    {
+        "nome": "BELLA BAR E RESTAURANTE",
+        "endereco": "Rua dos Odontólogos, 422 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111809/bellabar_bellomurro_bh_2026_pauloti_unibh-4781.jpg"
+    },
+    {
+        "nome": "BOI MAJOR",
+        "endereco": "R. Major Lopes, 7 | São Pedro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111810/boimajor_nacifcorrea_bh_2026_rodneycosta_unibh-4323.jpg"
+    },
+    {
+        "nome": "BOTECO 86",
+        "endereco": "R. Jacarina, 86 | Padre Eustáquio, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111812/boteco86_tremdeminas_bh_2026_pauloti_unibh-4902.jpg"
+    },
+    {
+        "nome": "BOTEQUIM BURITIS",
+        "endereco": "Rua Vitório Magnavacca, 39 | Buritis, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111914/botequimburitis_boibumba_bh_2026_pauloti_unibh-4077.jpg"
+    },
+    {
+        "nome": "BUTECO DO LILI",
+        "endereco": "R. Líbero Badaró, 493 | Dona Clara, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111916/botecodolele_saboresdavomaria_isabelaaraujo_unibh-3258.jpg"
+    },
+    {
+        "nome": "BUTECO TÔ D’BOA",
+        "endereco": "Av. Virgílio de Melo Franco, 400 | Jardim Atlântico, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111918/butecotodeboa_escondidinhotodeboa_bh_2026_rodneycosta_unibh-3587.jpg"
+    },
+    {
+        "nome": "BUTECO’S BAR",
+        "endereco": "R. Ernesto Braga, 2 | Jardim Atlântico, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111920/butecosbar_nuhderochavei_bh_2026_rodneycosta_unibh-5132.jpg"
+    },
+    {
+        "nome": "BUTIQUIM 325",
+        "endereco": "Avenida Francisco Sá, 325 |Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111922/butiquim325_quitutiarabe_bh_2026_vicentealexandre_unibh-3630.jpg"
+    },
+    {
+        "nome": "BUTIQUIM ON CÊ TÁ?",
+        "endereco": "Av. Gen. Olímpio Mourão Filho, 754 | Itapoã, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112024/butiquimonceta_linguadobradacomchampignonepuredecouveflor_bh_2026_rodneycosta_unibh-4256.jpg"
+    },
+    {
+        "nome": "CAFÉ PALHARES",
+        "endereco": "Rua dos Tupinambás, 638 | Centro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112026/cafepalhares_picadimdecarne_bh_2026_rodneycosta_unibh-4797.jpg"
+    },
+    {
+        "nome": "CAMISOLA BAR",
+        "endereco": "R. Luther King, 242 | Cidade Nova, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112028/camisolabar_frangoraiz_bh_2026_vicentealexandre_unibh-3575.jpg"
+    },
+    {
+        "nome": "CANTINA ARTE QUINTAL",
+        "endereco": "R. Realengo, 150 | Caiçara, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112030/cantinaartequintal_porcoatoladonalama_juliacristine_unibh-3312.jpg"
+    },
+    {
+        "nome": "CANTINHO DA BAIANA",
+        "endereco": "R. Itaité, 422 | São Geraldo, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112031/cantinhodabaiana_espiritodeporco_bh_2026_rodneycosta_unibh-4418.jpg"
+    },
+    {
+        "nome": "CASA DA MADRINHA",
+        "endereco": "Av. Barbacena, 212 | Barro Preto, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112133/restcasadamadrinha_tesouroescondido_bh_2026_kaiqueamorim_unibh-3741.jpg"
+    },
+    {
+        "nome": "CASA MOJUBÁ",
+        "endereco": "Rua Mármore, 817 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112135/barcasamojuba_saborancestral_bh_2026_pauloti_unibh-4980.jpg"
+    },
+    {
+        "nome": "CHAPA MÁGICA",
+        "endereco": "Av. Waldomiro Lobo, 305 | Guarani, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112137/chapamagica_girodoaioporo_bh_2026_kaiqueamorim_unibh-3799.jpg"
+    },
+    {
+        "nome": "CHOPERIA AMÉRICA NORTE SUL",
+        "endereco": "R. Chico Rei, 190 | Estrela do Oriente, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112138/choperiaamericanortesul_fonduedebuteco_bh_2026_julianunes_unibh-3674.jpg"
+    },
+    {
+        "nome": "CHOPP DA ESQUINA",
+        "endereco": "R. Garret, 263 | Nova Granada, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112140/choppdaesquina_sabornalata_bh_2026_rodneycosta_unibh-5096.jpg"
+    },
+    {
+        "nome": "CIPOEIRO BAR",
+        "endereco": "Rua Desembargador José Satyro, 451 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112242/cipoeiro_linguicaestouradacipoeiro_bh_2026_rodneycosta_unibh-3437.jpg"
+    },
+    {
+        "nome": "COMIDA & PROSA",
+        "endereco": "Av. Francisco Sá, 306 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112243/comidaeprosa_rabadaembriagada_ludmylasandrin_unibh-3894.jpg"
+    },
+    {
+        "nome": "COMPANHIA DO DINO",
+        "endereco": "Avenida Joaquim Clemente, 682 | Floramar, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112245/campanhiadodino_pescocodeboidodino_rodneycosta_unibh-3209.jpg"
+    },
+    {
+        "nome": "CONECTADOS BAR",
+        "endereco": "Av. Francisco Sá, 280 | Prado, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112247/conectadosbar_couvefloracervejeira_bh_2026_rodneycosta_unibh-5113.jpg"
+    },
+    {
+        "nome": "COSMOS",
+        "endereco": "R. Vicente Risola, 1305 | Santa Inês, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112249/cosmos_firmamento_bh_2026_julianunes_unibh-3756.jpg"
+    },
+    {
+        "nome": "DECK BOI NA BRASA",
+        "endereco": "R. Desembargador José Satyro, 302 | Manacás, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112350/deckboibabrasa_glugluabaiana_bh_2026_pauloti_unibh-4994.jpg"
+    },
+    {
+        "nome": "DONA DORA",
+        "endereco": "R. Rio de Janeiro, 1205 | Centro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112352/donadora_giragosto_bh_2026_pauloti_unibh-4112.jpg"
+    },
+    {
+        "nome": "DONA JU GASTRO BAR",
+        "endereco": "Rua dos Borges, 1520 | Jardim Vitória, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112354/donajugastrobar_coisadevo_isaquerodrigues_unibh-3289.jpg"
+    },
+    {
+        "nome": "DONA SUICA",
+        "endereco": "Av. João Samaha, 390 | São João Batista (Venda Nova), Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112356/donasuica_porodegalaecostelanapanela_bh_2026_rodneycosta_unibh-4460.jpg"
+    },
+    {
+        "nome": "EMPÓRIO LAÍS",
+        "endereco": "Rua Olavo Andrade, 195 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112357/emporiolais_sanhodesalsa_bh_206_pauloti_unibh-5026.jpg"
+    },
+    {
+        "nome": "ESPETINHO DO BOI",
+        "endereco": "R. São Paulo da Cruz, 357 | Barreiro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112459/espetinhodoboi_oraproboi_bh_2026_pauloti_unibh-4969.jpg"
+    },
+    {
+        "nome": "ESPETINHO DO TILIAS",
+        "endereco": "Praça Manoel Batista Baía, 235 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112501/espetinhodotilias_vacaloucanahorta_bh_2026_rodneycosta_unibh-3561.jpg"
+    },
+    {
+        "nome": "ESPETINHO REI E FAMÍLIA",
+        "endereco": "Av. Guarapari, 1281 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112503/espetinhoreiefamilia_musconobes_bh_2026_rodneycosta_unibh-4218.jpg"
+    },
+    {
+        "nome": "ESPETINHO SÃO PEDRO QUIÓ",
+        "endereco": "Rua Cristina, 870 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112504/espetinhosaopedroquio_vulcaonooasisquio_bh_2026_rodneycosta_unibh-4430.jpg"
+    },
+    {
+        "nome": "ESPETTINHO.COM",
+        "endereco": "R. Eli Seabra Filho, 510 | Buritis, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112506/espettinho.com_moeladatia_bh_2026_rodneycosta_unibh-4452.jpg"
+    },
+    {
+        "nome": "GALPÃO FLOR DO CAMPO",
+        "endereco": "Rua Coronel Otávio Diniz, 449 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112608/galpaoflordocampo_espinafrouatrouxinha_bh_2026_rodneycosta_unibh-3862.jpg"
+    },
+    {
+        "nome": "GARAGGE VINTAGE",
+        "endereco": "Av. Doutor Cristiano Guimarães, 1258 | Planalto, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112610/garaggevintage_seriodobar_bh_2026_kaiqueamorim_unibh-3686.jpg"
+    },
+    {
+        "nome": "GERALDIN DA CIDA",
+        "endereco": "Rua Contria, 1459 | Grajaú, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/02/12060043/cdb26_kv.png"
+    },
+    {
+        "nome": "GOLDEN GRILL",
+        "endereco": "R. Amílcar Cabral, 515 | Milionários, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112612/goldengrill_coxasuprimeaoalhoporo_bh_2026_rodneycosta_unibh-4571.jpg"
+    },
+    {
+        "nome": "GRAFFICA BAR",
+        "endereco": "Av. Augusto de Lima, 233| Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112614/grafficabar_bolmcomnobris_bh_2026_pauloamorim_unibh-3381.jpg"
+    },
+    {
+        "nome": "IRACEMA BAR",
+        "endereco": "R. Almandina, 56 | Santa Teresa, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112615/iracema_moelaaomolhocompeixinhodahortapronadar_bh_2026_pauloti_unibh-4030.jpg"
+    },
+    {
+        "nome": "IVO GRILL",
+        "endereco": "Rua Professor Tristão da Cunha, 183 | Planalto, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112717/ivogrill_ivoqueioporco_bh_2026_joaovictor_unibh-3950.jpg"
+    },
+    {
+        "nome": "JÁ TÔ INNO",
+        "endereco": "R. Benjamim Dias, 379 | Barreiro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112719/jatoindo_tremdeminas_bh_2026_pauloti_unibh-5234.jpg"
+    },
+    {
+        "nome": "JUZÉ BAR",
+        "endereco": "R. Carlos Sá, 180| Jardim Atlântico, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112721/juzebar_charutofumacaefarofa_bh_2026_pauloti_unibh-3959.jpg"
+    },
+    {
+        "nome": "KÖBES EMPORIUM BAR",
+        "endereco": "R. Professor Raimundo Nonato, 31 - A | Santa Tereza, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112724/kobesemporiumbar_prosaverdeeroxa_bh_2026_rodneycosta_unibh-4146.jpg"
+    },
+    {
+        "nome": "KOQUEIROS BAR",
+        "endereco": "Av. Silviano Brandão, 1293 | Sagrada Família, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112722/koqueirosbar_kostelinhatropical_bh_2026_juliacristine_unibh-3514.jpg"
+    },
+    {
+        "nome": "LEO DA QUADRA",
+        "endereco": "R. Oliveira Lisboa, 107 | Barreiro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112825/leodaquadra_dijuei_bh_2026_pauloti_unibh-4097.jpg"
+    },
+    {
+        "nome": "LOCOMOTIVAS BAR",
+        "endereco": "R. Carmésia, 568 | Santa Inês, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112827/locomotivasbar_porkimpopeye_bh_2026_rodneycosta_unibh-4302.jpg"
+    },
+    {
+        "nome": "MAGNÍFICO QUINTAL",
+        "endereco": "R. Doutor Jefferson de Oliveira, 56 | Santa Amélia, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112829/magnificoquintal_costelanasombradacouve_bh_2026_rodneycosta_unibh-4286.jpg"
+    },
+    {
+        "nome": "MAGRELO’S BAR",
+        "endereco": "Av. Serrana, 635 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112830/magrelosbar_avacanovinho_bh_2026_isaquerodrigues_unibh-3716.jpg"
+    },
+    {
+        "nome": "MAMUTE BAR",
+        "endereco": "R. Brás Cubas, 116 | Cruzeiro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112832/mamute_provaprocevecriatura_bh_2026_rodneycosta_unibh-3876.jpg"
+    },
+    {
+        "nome": "MINEIROS BEER",
+        "endereco": "R. Romualdo Lopes Cançado, 399 | Castelo, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112935/mineirobeer_talentomineiro_bh_2026_julianunes_unibh-3702.jpg"
+    },
+    {
+        "nome": "MULÃO",
+        "endereco": "R. Marambaia, 291 | Caiçara, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112937/mulao_botoxmineiro_bh_2026_rodneycosta_unibh-4240.jpg"
+    },
+    {
+        "nome": "NOSSO SPETIM",
+        "endereco": "Rua dos Astecas, 3219 | Santa Mônica, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112938/nossospetim_minasnoprato_bh_2026_pauloti_unibh-4755.jpg"
+    },
+    {
+        "nome": "NUBAR",
+        "endereco": "Avenida dos Engenheiros, 843 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112940/nubar_trembaodepanela_bh_2026_rodneycosta_unibh-4398.jpg"
+    },
+    {
+        "nome": "O FINO DO ALHO",
+        "endereco": "R. Capitão Sérgio Pires, 41 | Minascaixa, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09112941/ofinodoalho_ossobucodisua_bh_2026_isaquerodrigues_unibh-3603.jpg"
+    },
+    {
+        "nome": "ORATÓRIO BAR",
+        "endereco": "Av. Brasil, 161 | Santa Efigênia, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113043/oratoriobar_lambuzado_bh_2026_rodneycosta_unibh-4675.jpg"
+    },
+    {
+        "nome": "PARADA 10.95 BAR",
+        "endereco": "Avenida dos Engenheiros, 1095 | Alípio de Melo, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113045/parada1095_locroporminas_bh_2026_rodneycosta_unibh-3929.jpg"
+    },
+    {
+        "nome": "PARADA DO SABOR",
+        "endereco": "Av. General Carlos Guedes, 346 | Planalto, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113047/paradadosabor_lanchedepopeye_bh_2026_pauloti_unibh-5163.jpg"
+    },
+    {
+        "nome": "PÉ DE CANA",
+        "endereco": "R. Flórida, 15 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/16112227/pedecana_porconalama_joaovictor_unibh-3298.jpg"
+    },
+    {
+        "nome": "PÉ DE GOIABA",
+        "endereco": "Av. Amazonas, 4676 | Nova Suíça, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113050/pedegoiaba_atolacoxa_bh_2026_rodneycosta_unibh-4135.jpg"
+    },
+    {
+        "nome": "PLANETA LÚPULO",
+        "endereco": "Av. Guarapari, 108 | Santa Amélia, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113153/planetalupulo_catifunda_bh_2026_pauloti_unibh-4839.jpg"
+    },
+    {
+        "nome": "POIZÉ BAR E PETISQUEIRA",
+        "endereco": "R. Pium-I, 686 | Cruzeiro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113155/poizebar_porcoescaladadoopeye_bh_2026_rodneycosta_unibh-4690.jpg"
+    },
+    {
+        "nome": "PRADO BEER",
+        "endereco": "Av. Francisco Sá, 590 | Prado, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113156/pradobeer_musculodopopeye_bh_2026_pauloti_unibh-4945.jpg"
+    },
+    {
+        "nome": "QUEREMOS FRANGO",
+        "endereco": "Avenida Joaquim Clemente, 730 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113158/queremosfrango_soforteuai_bh_2026_rodneycosta_unibh-4390.jpg"
+    },
+    {
+        "nome": "QUINTAL DO LOUZADA",
+        "endereco": "Rua Gávea, 358 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113159/quintaldolouzada_charuteco_isaquerodrigues_unibh-3203.jpg"
+    },
+    {
+        "nome": "QUIOXQUE BOTEQUIM CARIOCA",
+        "endereco": "Rua Henrique Badaró Portugal, 157 | Buritis, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113301/quioxquecarioca_souomarinheiropopeye_bh_2026_pauloti_unibh-5175.jpg"
+    },
+    {
+        "nome": "QUITANDAS DA TIA NICE BAR",
+        "endereco": "R. Alabastro, 146 | Horto, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113303/quitandasdatianice_toki_bh_2026_rodneycosta_unibh-4358.jpg"
+    },
+    {
+        "nome": "RECANTO DA TRAÍRA",
+        "endereco": "Rua Alberto Cintra, 47 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113304/recantodatraira_trairanaotrai_bh_2026_isacrodrigues_unibh-3792.jpg"
+    }
+]

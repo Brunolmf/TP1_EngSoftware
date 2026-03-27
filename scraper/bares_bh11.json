@@ -1,0 +1,42 @@
+[
+    {
+        "nome": "TANGANICA ART BAR",
+        "endereco": "R. Padre Demerval Gomes, 380 | Coração Eucarístico, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113626/tanganica_triovegano_bh_2026_pauloti_unibh-4057.jpg"
+    },
+    {
+        "nome": "TOCA DO OGRO",
+        "endereco": "R. Professor Nelson de Sena, 4 | Pampulha, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113628/tocadoogro_triodaroca_bh_2026_rodneycosta_unibh-3916.jpg"
+    },
+    {
+        "nome": "TONINHO – ALTO FORNO",
+        "endereco": "R. Miracema, 100 | Santo André, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113630/bartoninhoaltoforno_penorabo_bh_2026_pauloti_unibh-5193.jpg"
+    },
+    {
+        "nome": "US MOTOCA",
+        "endereco": "R. Blenda, 91 | Camargos, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113632/usmotoca_risotomineiro_bh_2026_rodneycosta_unibh-4269.jpg"
+    },
+    {
+        "nome": "VIA DESLANDES",
+        "endereco": "Rua Francisco Deslandes, 10 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113633/viadeslandes_dijoelho_bh_2026_pauloti_unibh-4933.jpg"
+    },
+    {
+        "nome": "XAMBAR",
+        "endereco": "Av. Augusto de Lima, 233 - Edifício Maleta | Centro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113736/xambar_escondeesconde_bh_2026_rodneycosta_unibh-4581.jpg"
+    },
+    {
+        "nome": "ZÉ BOLACHA",
+        "endereco": "Rua das Melancias, 35 | Vila Clóris, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113737/zebolachabar_menudosgerais_bh_2026_pauloti_unibh-5144.jpg"
+    },
+    {
+        "nome": "ZOO BAR",
+        "endereco": "Av. Otacílio Negrão de Lima, 7844 | Pampulha, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09113739/zoobar_procoro_bh_2026_rodneycosta_unibh-4379.jpg"
+    }
+]

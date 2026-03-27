@@ -1,0 +1,62 @@
+[
+    {
+        "nome": "BAR TEMÁTICO STA. TERESA",
+        "endereco": "R. Pirite, 187 | Santa Teresa, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111700/bartematico_osegredodaforcadolampiao_bh_2026_rodneycosta_unibh-4664.jpg"
+    },
+    {
+        "nome": "BARRIGUDINHA BUTECO",
+        "endereco": "Av. dos Engenheiros, 1071 | Alípio de Melo, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111702/barrigudinha_flordeminas_bh_2026_luizafernandes_unibh-3472.jpg"
+    },
+    {
+        "nome": "BARZIM DOS AMIGOS",
+        "endereco": "R. Lindolfo de Azevedo, 1263 | Jardim América, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111704/barzimdosamigos_penaroca_bh_2026_joaovictor_unibh-3489.jpg"
+    },
+    {
+        "nome": "BAZIN BAR",
+        "endereco": "R. Min. Orozimbo Nonato, 1053| Dona Clara, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111805/bazim_conceicao_bh_2026_pauloti_unibh-4811.jpg"
+    },
+    {
+        "nome": "BECO RESTAURANTE",
+        "endereco": "R. dos Tamoios, 232 | Centro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111807/becorestaurante_verdequetequerorabo_bh_2026_pauloti_unibh-4495.jpg"
+    },
+    {
+        "nome": "BELLA BAR E RESTAURANTE",
+        "endereco": "Rua dos Odontólogos, 422 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111809/bellabar_bellomurro_bh_2026_pauloti_unibh-4781.jpg"
+    },
+    {
+        "nome": "BOI MAJOR",
+        "endereco": "R. Major Lopes, 7 | São Pedro, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111810/boimajor_nacifcorrea_bh_2026_rodneycosta_unibh-4323.jpg"
+    },
+    {
+        "nome": "BOTECO 86",
+        "endereco": "R. Jacarina, 86 | Padre Eustáquio, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111812/boteco86_tremdeminas_bh_2026_pauloti_unibh-4902.jpg"
+    },
+    {
+        "nome": "BOTEQUIM BURITIS",
+        "endereco": "Rua Vitório Magnavacca, 39 | Buritis, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111914/botequimburitis_boibumba_bh_2026_pauloti_unibh-4077.jpg"
+    },
+    {
+        "nome": "BUTECO DO LILI",
+        "endereco": "R. Líbero Badaró, 493 | Dona Clara, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111916/botecodolele_saboresdavomaria_isabelaaraujo_unibh-3258.jpg"
+    },
+    {
+        "nome": "BUTECO TÔ D’BOA",
+        "endereco": "Av. Virgílio de Melo Franco, 400 | Jardim Atlântico, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111918/butecotodeboa_escondidinhotodeboa_bh_2026_rodneycosta_unibh-3587.jpg"
+    },
+    {
+        "nome": "BUTECO’S BAR",
+        "endereco": "R. Ernesto Braga, 2 | Jardim Atlântico, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111920/butecosbar_nuhderochavei_bh_2026_rodneycosta_unibh-5132.jpg"
+    }
+]

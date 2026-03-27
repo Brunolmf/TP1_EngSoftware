@@ -1,0 +1,62 @@
+[
+    {
+        "nome": "222",
+        "endereco": "R. Francisco Deslandes, 222 |Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09110856/222_buraquimquente_bh_2026_pauloti_unibh-4859.jpg"
+    },
+    {
+        "nome": "ALEXANDRE’S BAR",
+        "endereco": "R. David Alves do Vale, 68 | Santa Rosa, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09110859/alexandresbar_porcoamostarda_pauloti_unibh-3271.jpg"
+    },
+    {
+        "nome": "ANDRADE’S BEER",
+        "endereco": "R. Dona Geni, 32 | Maria Helena, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09110901/andradesbeer_ossadinhaatolada_bh_2026_rodneycosta_unibh-4615.jpg"
+    },
+    {
+        "nome": "ARMAZÉM SANTA AMÉLIA",
+        "endereco": "Rua da Sinfonia, 253 | Santa Amélia, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09110903/armazemsantaamelia_chucretedemineiro_bh_2026_rodneycosta_unibh-3650.jpg"
+    },
+    {
+        "nome": "AVALANCHE BAR E RESTAURANTE",
+        "endereco": "R. Doutor Álvaro Camargos, 1113 | São Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111005/avalancheespeteria_nopeitonaraiz_bh_2026_pauloti_unibh-4514.jpg"
+    },
+    {
+        "nome": "AZOUGUE FOGO E BAR",
+        "endereco": "Rua do Ouro, 835 | Serra, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111007/azouquefogobar_oncoto_bh_2026_rodneycosta_unibh-4638.jpg"
+    },
+    {
+        "nome": "BAIÚCA",
+        "endereco": "R. Piauí, 1884 | Funcionários, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111008/baiuca_pastelpeganoporo_bh_2026_pauloti_unibh-4013.jpg"
+    },
+    {
+        "nome": "BAR BAMBÚ",
+        "endereco": "R. Divisa Nova, 670 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111012/barbambu_tocomnagunamao_bh_2026_isaquerodrigues_unibh-3461.jpg"
+    },
+    {
+        "nome": "BAR BENDITA BADERNA",
+        "endereco": "R. Silva Fortes, 47 | União, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111113/barbenditabaderna_benditaporpeta_bh_2026_pauloti_unibh-5051.jpg"
+    },
+    {
+        "nome": "BAR DA CINTIA",
+        "endereco": "R. Pastor Rui Franco, 257 | São João Batista (Venda Nova), Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111115/bardacintia_chuletadescontraida_bh_2026_pauloti_unibh-5257.jpg"
+    },
+    {
+        "nome": "BAR DA FIA",
+        "endereco": "R. dos Astecas, 2722 | Santa Mônica, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111117/bardafia_lomboquentecoracaomole_vicentealexandre_unibh-3148.jpg"
+    },
+    {
+        "nome": "BAR DA GISA",
+        "endereco": "Rua Maria Ferreira da Silva, 367 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111119/bardagisa_ajoelhoutemquerezar_giovanaevilyn_unibh-3157.jpg"
+    }
+]

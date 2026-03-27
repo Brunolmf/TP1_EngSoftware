@@ -1,0 +1,62 @@
+[
+    {
+        "nome": "BAR DO REGIS",
+        "endereco": "R. Gávea, 422 | Jardim América, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111441/bardoregis_leilaoeevanoparaiso_bh_2026_giovanaevelyn_unibh-3344.jpg"
+    },
+    {
+        "nome": "BAR DO TIÃO",
+        "endereco": "Avenida Doutor Cristiano Guimarães, 2570 | Planalto, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/25074325/tiaovei_2026_belohorizonte.jpg"
+    },
+    {
+        "nome": "BAR DOS MENINOS",
+        "endereco": "Rua Lindolfo Deodoro, 503 - A | Salgado Filho, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111445/bardosmeninos_acopaenossa_bh_2026_pauloti_unibh-4886.jpg"
+    },
+    {
+        "nome": "BAR DU DU",
+        "endereco": "R. Vinte e Oito de Setembro, 229 | Esplanada, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111447/bardudu_atequemnaogostacome_bh_2026_pauloti_unibh-4066.jpg"
+    },
+    {
+        "nome": "BAR DU MAGRELO",
+        "endereco": "Rua São Felipe, 21 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111548/bardomagrelo_canelasuada_bh_2026_pauloti_unibh-3415.jpg"
+    },
+    {
+        "nome": "BAR E RESTAURANTE BOM SABOR",
+        "endereco": "R. Java, 386 | Nova Suíça, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111010/bomsabor_saboresdaroca_bh_2026_pauloti_unibh-5218.jpg"
+    },
+    {
+        "nome": "BAR E RESTAURANTE DO BRANCO",
+        "endereco": "Rua Pitangui, 3197 | Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111549/bardobranco_bemcasado_bh_2026_isaquerodrigues_unibh-3534.jpg"
+    },
+    {
+        "nome": "BAR ESTABELECIMENTO",
+        "endereco": "R. Monte Alegre, 160 | Serra, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111551/barestabelecimento_comabarriganofogo_bh_2026_rodneycosta_unibh-5068.jpg"
+    },
+    {
+        "nome": "BAR JUNTO JUNTINHO",
+        "endereco": "Rua Cura D’Ars, 542 | Prado, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111553/juntojuntinho_marinheiropopeye_bh_2026_julianunes_unibh-3395.jpg"
+    },
+    {
+        "nome": "BAR MANIA MINEIRA",
+        "endereco": "Rua Paracatu, 1099 | Santo Agostinho, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111555/maniamineira_joelhodavovopig_bh_2026_pauloti_unibh-3996.jpg"
+    },
+    {
+        "nome": "BAR POMPÉU",
+        "endereco": "R. São Miguel, 779 - antigo 1243 | Itapoã, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111656/barpompeu_porquinhomelado_isabelaaraujo_unibh-3547.jpg"
+    },
+    {
+        "nome": "BAR STELLA",
+        "endereco": "Av. Saramenha, 1599 | Guarani, Belo Horizonte - MG",
+        "foto_url": "https://cdb-static-files.s3.amazonaws.com/wp-content/uploads/2026/03/09111658/barstellaoficial_porcoamineira_bh_2026_rodneycosta_unibh-4700.jpg"
+    }
+]
