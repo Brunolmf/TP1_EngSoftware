@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acessar | Saideira</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #1a1a1a 0%, #101010 100%);
+            color: #f4f4f4;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .wrapper {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #262626;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+        }
+        h1, h2 {
+            margin-top: 0;
+        }
+        h1 {
+            color: #d32f2f;
+        }
+        p {
+            color: #d1d1d1;
+        }
+        form {
+            display: grid;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background-color: #111;
+            color: #f4f4f4;
+        }
+        button,
+        .btn-link {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        button {
+            border: none;
+            background-color: #d32f2f;
+            color: white;
+            cursor: pointer;
+        }
+        .btn-link {
+            background-color: transparent;
+            color: #d32f2f;
+            border: 2px solid #d32f2f;
+        }
+        .secao-cadastro {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid #3a3a3a;
+        }
+        .voltar {
+            display: inline-block;
+            margin-top: 24px;
+            color: #f4f4f4;
+        }
+        .mensagem {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .erro {
+            background-color: #5c1f1f;
+        }
+        .sucesso {
+            background-color: #1f5c34;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="card">
+            <h1>Entrar no Saideira</h1>
+            <p>Faça login para continuar registrando seus goles favoritos.</p>
+
+            {% if erro %}
+                <div class="mensagem erro">{{ erro }}</div>
+            {% endif %}
+
+            {% if sucesso %}
+                <div class="mensagem sucesso">{{ sucesso }}</div>
+            {% endif %}
+
+            <form method="POST">
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div>
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+
+                <button type="submit">Entrar</button>
+            </form>
+
+            <div class="secao-cadastro">
+                <h2>Ainda nao tem conta?</h2>
+                <p>Crie seu acesso para comecar a avaliar bares e acompanhar seus amigos.</p>
+                <a href="/cadastro" class="btn-link">Criar conta</a>
+            </div>
+
+            <a href="/" class="voltar">Voltar para a pagina inicial</a>
+        </div>
+    </div>
+</body>
+</html>
