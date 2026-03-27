@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from models import db, Usuario
@@ -23,7 +24,14 @@ with app.app_context():
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # Caminho base subindo uma pasta e entrando em scraper
+    caminho_arquivo = os.path.join(os.path.dirname(__file__), '..', 'scraper', 'bares.json')
+    bares = []
+    if os.path.exists(caminho_arquivo):
+        with open(caminho_arquivo, 'r', encoding='utf-8') as f:
+            bares = json.load(f)
+            
+    return render_template('index.html', bares=bares)
 
 @app.route('/acesso', methods=['GET', 'POST'])
 def acesso():
