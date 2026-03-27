@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
 from models import db, Usuario
+import re
 
 # Carrega as variáveis de segurança do arquivo .env
 load_dotenv()
@@ -24,6 +25,19 @@ with app.app_context():
 def home():
     return render_template('index.html')
 
+def email_valido(email):
+    padrao = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+    return re.match(padrao, email) is not None
+
+def senha_forte(senha):
+    if (len(senha) < 8):
+        return False
+    tem_maiuscula = any(c.isupper() for c in senha)
+    tem_minuscula = any(c.islower() for c in senha)
+    tem_numero = any(c.isdigit() for c in senha)
+    tem_especial = any(not c.isalnum() for c in senha)
+    return tem_especial and tem_maiuscula and  tem_minuscula and tem_numero
+
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     erro = None
@@ -37,8 +51,12 @@ def cadastro():
 
         if not nome or not email or not senha or not idade_texto:
             erro = 'Preencha todos os campos.'
+        elif not email_valido(email):
+            erro = 'Digite um email valido.'
         elif Usuario.query.filter_by(email=email).first():
             erro = 'Este email ja esta cadastrado.'
+        elif not senha_forte(senha):
+            erro = erro = 'A senha deve ter pelo menos 8 caracteres, com letra maiuscula, minuscula, numero e caractere especial.'
         else:
             try:
                 idade = int(idade_texto)
