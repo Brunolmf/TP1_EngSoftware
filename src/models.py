@@ -33,9 +33,7 @@ class Estabelecimento(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(150), nullable=False)
-    descricao = db.Column(db.Text, nullable=True)
     endereco = db.Column(db.String(200), nullable=True)
-    bairro = db.Column(db.String(100), nullable=True)
     foto_url = db.Column(db.String(255), nullable=True)
     faixa_de_preco = db.Column(db.String(50), nullable=True) # Ex: $, $$, $$$
     

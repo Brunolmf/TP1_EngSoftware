@@ -2,7 +2,8 @@ import os
 import json
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
-from models import db, Usuario
+from models import db, Usuario, Estabelecimento, Avaliacao
+from sqlalchemy import func
 import re
 
 # Carrega as variáveis de segurança do arquivo .env
@@ -24,14 +25,32 @@ with app.app_context():
 
 @app.route('/')
 def home():
-    # Caminho base subindo uma pasta e entrando em scraper
-    caminho_arquivo = os.path.join(os.path.dirname(__file__), '..', 'scraper', 'bares.json')
-    bares = []
-    if os.path.exists(caminho_arquivo):
-        with open(caminho_arquivo, 'r', encoding='utf-8') as f:
-            bares = json.load(f)
+    # Busca todos os bares e a média de notas usando OUTER JOIN
+    # Ordena para que os que têm nota (melhores notas) venham primeiro, 
+    # e os que não têm nota (NULL) vão para o final
+    bares_query = db.session.query(
+        Estabelecimento,
+        func.avg(Avaliacao.nota).label('media_notas')
+    ).outerjoin(Avaliacao).group_by(Estabelecimento.id).order_by(func.avg(Avaliacao.nota).desc().nulls_last()).all()
+    
+    bares_destaque = []
+    outros_bares = []
+    
+    for bar, media in bares_query:
+        bar_dict = {
+            'nome': bar.nome,
+            'endereco': bar.endereco,
+            'foto_url': bar.foto_url,
+            'nota': round(media, 1) if media else 'Sem nota'
+        }
+        
+        # Filtra quem tem nota de quem não tem
+        if media:
+            bares_destaque.append(bar_dict)
+        else:
+            outros_bares.append(bar_dict)
             
-    return render_template('index.html', bares=bares)
+    return render_template('index.html', bares_destaque=bares_destaque, outros_bares=outros_bares)
 
 @app.route('/acesso', methods=['GET', 'POST'])
 def acesso():

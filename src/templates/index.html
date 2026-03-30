@@ -14,9 +14,12 @@
             text-align: center;
         }
         header {
-            padding: 20px;
+            padding: 20px 40px;
             background-color: #d32f2f; /* Um vermelho que remete a estufa de salgado e neon */
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         h1 {
             margin: 0;
@@ -100,12 +103,29 @@
             background-color: #d32f2f;
             color: white;
         }
+        .btn-header {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            background-color: white;
+            color: #d32f2f;
+            transition: 0.3s;
+        }
+        .btn-header:hover {
+            background-color: #f4f4f4;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>🍻 Saideira</h1>
+        <div>
+            <a href="/acesso" class="btn-header">Login / Criar conta</a>
+        </div>
     </header>
 
     <div class="hero">
@@ -113,7 +133,6 @@
         <p>Acompanhe seus amigos, avalie a estufa, dê nota para a cerveja gelada e descubra o seu próximo bar favorito na capital mundial do boteco.</p>
         
         <div class="botoes">
-            <a href="/acesso" class="btn btn-primary">Login / Criar conta</a>
             <a href="#bares" class="btn btn-secondary">Explorar bares</a>
         </div>
     </div>
@@ -121,7 +140,7 @@
     <div id="bares" class="container-bares">
         <h2>Botecos em Destaque</h2>
         <div class="grid-bares">
-            {% for bar in bares %}
+            {% for bar in bares_destaque %}
             <div class="card-bar">
                 {% if bar.foto_url %}
                 <img src="{{ bar.foto_url }}" alt="{{ bar.nome }}">
@@ -131,10 +150,31 @@
                 <div class="card-content">
                     <h3>{{ bar.nome }}</h3>
                     <p>📍 {{ bar.endereco }}</p>
+                    <p style="color: #ffd700; margin-top: 5px; font-weight: bold;">⭐ {{ bar.nota }}</p>
                 </div>
             </div>
             {% else %}
-            <p>Nenhum bar encontrado. Verifique o arquivo bares.json.</p>
+            <p>Nenhum boteco avaliado ainda.</p>
+            {% endfor %}
+        </div>
+
+        <h2 style="margin-top: 60px;">Descubra Mais Bares</h2>
+        <div class="grid-bares">
+            {% for bar in outros_bares %}
+            <div class="card-bar">
+                {% if bar.foto_url %}
+                <img src="{{ bar.foto_url }}" alt="{{ bar.nome }}">
+                {% else %}
+                <img src="https://via.placeholder.com/400x200?text=Bar+Sem+Foto" alt="Sem foto">
+                {% endif %}
+                <div class="card-content">
+                    <h3>{{ bar.nome }}</h3>
+                    <p>📍 {{ bar.endereco }}</p>
+                    <p style="color: #aaaaaa; margin-top: 5px; font-weight: bold;">Sem nota</p>
+                </div>
+            </div>
+            {% else %}
+            <p>Não há mais bares para exibir.</p>
             {% endfor %}
         </div>
     </div>
