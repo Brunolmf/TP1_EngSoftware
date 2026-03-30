@@ -1,33 +1,27 @@
 import os
-import json
-from flask import Flask, render_template, request
+import re
+from flask import Flask, render_template, request, session, redirect, url_for
 from dotenv import load_dotenv
 from models import db, Usuario, Estabelecimento, Avaliacao
 from sqlalchemy import func
-import re
 
-# Carrega as variáveis de segurança do arquivo .env
 load_dotenv()
 
 app = Flask(__name__)
 
-# Puxa a URL do banco diretamente do .env
+# Configurações de Segurança
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# A SECRET_KEY é necessária para usar session
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'boteco_secreto_123')
 
-# Conecta o banco de dados ao nosso app
 db.init_app(app)
 
-# Cria as tabelas fisicamente lá no Neon
 with app.app_context():
     db.create_all()
-    print("Conectado ao Neon! Tabelas do Saideira criadas/verificadas com sucesso na nuvem.")
 
 @app.route('/')
 def home():
-    # Busca todos os bares e a média de notas usando OUTER JOIN
-    # Ordena para que os que têm nota (melhores notas) venham primeiro, 
-    # e os que não têm nota (NULL) vão para o final
     bares_query = db.session.query(
         Estabelecimento,
         func.avg(Avaliacao.nota).label('media_notas')
@@ -43,8 +37,6 @@ def home():
             'foto_url': bar.foto_url,
             'nota': round(media, 1) if media else 'Sem nota'
         }
-        
-        # Filtra quem tem nota de quem não tem
         if media:
             bares_destaque.append(bar_dict)
         else:
@@ -55,8 +47,6 @@ def home():
 @app.route('/acesso', methods=['GET', 'POST'])
 def acesso():
     erro = None
-    sucesso = None
-
     if request.method == 'POST':
         email = request.form.get('email', '').strip().lower()
         senha = request.form.get('senha', '')
@@ -65,35 +55,19 @@ def acesso():
             erro = 'Preencha email e senha.'
         else:
             usuario = Usuario.query.filter_by(email=email).first()
-
-            if not usuario:
-                erro = 'Email ou senha invalidos.'
-            elif not usuario.verificar_senha(senha):
-                erro = 'Email ou senha invalidos.'
+            if usuario and usuario.verificar_senha(senha):
+                # Cria a sessão do usuário
+                session['usuario_id'] = usuario.id
+                session['usuario_nome'] = usuario.nome
+                return redirect(url_for('home'))
             else:
-                sucesso = f'Login validado para {usuario.nome}. O proximo passo sera criar a sessao.'
-        
+                erro = 'Email ou senha inválidos.'
 
-    return render_template('acesso.html', erro=erro, sucesso=sucesso)
-
-def email_valido(email):
-    padrao = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
-    return re.match(padrao, email) is not None
-
-def senha_forte(senha):
-    if (len(senha) < 8):
-        return False
-    tem_maiuscula = any(c.isupper() for c in senha)
-    tem_minuscula = any(c.islower() for c in senha)
-    tem_numero = any(c.isdigit() for c in senha)
-    tem_especial = any(not c.isalnum() for c in senha)
-    return tem_especial and tem_maiuscula and  tem_minuscula and tem_numero
+    return render_template('acesso.html', erro=erro)
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     erro = None
-    sucesso = None
-
     if request.method == 'POST':
         nome = request.form.get('nome', '').strip()
         email = request.form.get('email', '').strip().lower()
@@ -102,35 +76,32 @@ def cadastro():
 
         if not nome or not email or not senha or not idade_texto:
             erro = 'Preencha todos os campos.'
-        elif not email_valido(email):
-            erro = 'Digite um email valido.'
         elif Usuario.query.filter_by(email=email).first():
-            erro = 'Este email ja esta cadastrado.'
-        elif not senha_forte(senha):
-            erro = 'A senha deve ter pelo menos 8 caracteres, com letra maiuscula, minuscula, numero e caractere especial.'
-        
+            erro = 'Este email já está cadastrado.'
         else:
             try:
                 idade = int(idade_texto)
-                if idade < 0 or idade > 120:
-                    erro = "Digite uma idade válida"
-                elif idade < 18:
-                    erro = 'Voce precisa ter pelo menos 18 anos para criar uma conta.'
+                if idade < 18:
+                    erro = 'Você precisa ter pelo menos 18 anos.'
+                else:
+                    novo_usuario = Usuario(nome=nome, email=email, idade=idade)
+                    novo_usuario.set_senha(senha)
+                    db.session.add(novo_usuario)
+                    db.session.commit()
+                    
+                    # Login automático após cadastro
+                    session['usuario_id'] = novo_usuario.id
+                    session['usuario_nome'] = novo_usuario.nome
+                    return redirect(url_for('home'))
             except ValueError:
-                erro = 'Digite uma idade valida.'
-            else:
-                usuario = Usuario(
-                    nome=nome,
-                    email=email,
-                    idade=idade
-                )
-                usuario.set_senha(senha)
+                erro = 'Idade inválida.'
 
-                db.session.add(usuario)
-                db.session.commit()
-                sucesso = 'Conta criada com sucesso.'
+    return render_template('cadastro.html', erro=erro)
 
-    return render_template('cadastro.html', erro=erro, sucesso=sucesso)
+@app.route('/sair')
+def sair():
+    session.clear() # Limpa os dados da sessão
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
