@@ -33,13 +33,25 @@
             font-family: var(--font-serif);
         }
         header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             padding: 20px 40px;
-            background-color: #d32f2f; /* Um vermelho que remete a estufa de salgado e neon */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            background: rgba(18, 18, 18, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+
+        header h1{
+            color: var(--primary-amber);
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
         h1 {
             margin: 0;
             font-size: 2.5rem;
@@ -128,12 +140,13 @@
             border-radius: 5px;
             font-size: 1rem;
             font-weight: bold;
-            background-color: white;
-            color: #d32f2f;
-            transition: 0.3s;
+            background-color: transparent;
+            color: var(--primary-amber);
+            transition: 0.3s ease;
         }
         .btn-header:hover {
-            background-color: #f4f4f4;
+            background-color: var(--primary-amber);
+            color: var(--bg-color);
             transform: scale(1.05);
         }
     </style>
@@ -141,11 +154,11 @@
 <body>
 
     <header>
-        <h1>🍻 Saideira</h1>
+        <h1>Saideira</h1>
         <div>
             {% if session.get('usuario_id') %}
-                <span style="color: white; margin-right: 15px;">Olá, <strong>{{ session['usuario_nome'] }}</strong></span>
-                <a href="/sair" class="btn-header" style="background-color: transparent; color: white; border: 1px solid white;">Sair</a>
+                <span style="color: var(--text-muted); margin-right: 15px;">Olá, <strong style="color: var(--text-light);">{{ session['usuario_nome'] }}</strong></span>
+                <a href="/sair" class="btn-header">Sair</a>
             {% else %}
                 <a href="/acesso" class="btn-header">Login / Criar conta</a>
             {% endif %}
