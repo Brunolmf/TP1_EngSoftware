@@ -1,106 +1,607 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ bar.nome }} - Detalhes</title>
-    <!-- Fontes do Google -->
+    <title>{{ bar.nome }} | Saideira</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --primary-amber: #d4af37;
-            --accent-bordo: #800020;
-            --text-light: #f4f4f4;
-            --text-muted: #aaaaaa;
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'DM Sans', sans-serif;
+            --bg: #130f0c;
+            --bg-soft: #201812;
+            --card: rgba(38, 28, 20, 0.94);
+            --card-strong: rgba(52, 36, 25, 0.98);
+            --line: rgba(255, 214, 153, 0.14);
+            --accent: #ef7d32;
+            --accent-2: #ffd166;
+            --text: #fff4e6;
+            --muted: #d5c2ae;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
         }
 
-        body { 
-            font-family: var(--font-sans); 
-            background-color: var(--bg-color);
-            color: var(--text-light);
-            margin: 20px; 
+        * {
+            box-sizing: border-box;
         }
-        
-        h1, h2, h3 { font-family: var(--font-serif); color: var(--primary-amber); }
-        .review-box { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; }
-        input, textarea, select { width: 100%; max-width: 400px; padding: 8px; margin-top: 5px; }
-        button { padding: 10px 15px; background: #007BFF; color: white; border: none; border-radius: 3px; cursor: pointer; }
-        button:hover { background: #0056b3; }
-        .header { display: flex; justify-content: space-between; align-items: center; }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(239, 125, 50, 0.16), transparent 28%),
+                radial-gradient(circle at top right, rgba(255, 209, 102, 0.14), transparent 24%),
+                linear-gradient(180deg, #1a130e 0%, var(--bg) 100%);
+            min-height: 100vh;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 32px 20px 48px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .topbar a {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.8fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .hero,
+        .sidebar {
+            display: grid;
+            gap: 24px;
+        }
+
+        .hero-card,
+        .panel,
+        .review-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card {
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #332116 0%, #1a130e 100%);
+        }
+
+        .hero-body {
+            padding: 28px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 209, 102, 0.1);
+            color: var(--accent-2);
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+        }
+
+        h1 {
+            margin-top: 18px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            letter-spacing: 0.04em;
+            line-height: 0.95;
+        }
+
+        .descricao {
+            margin: 18px 0 24px;
+            color: var(--muted);
+            font-size: 1.02rem;
+            line-height: 1.7;
+            max-width: 60ch;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+        }
+
+        .meta-item {
+            padding: 16px;
+            border-radius: 18px;
+            background: var(--card-strong);
+            border: 1px solid var(--line);
+        }
+
+        .meta-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .meta-value {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .panel {
+            padding: 24px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .panel-header p {
+            margin: 6px 0 0;
+            color: var(--muted);
+        }
+
+        .trigger-button,
+        .submit-button,
+        .login-link {
+            border: none;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
+        }
+
+        .trigger-button,
+        .submit-button {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff9f45 100%);
+            color: #23160f;
+        }
+
+        .trigger-button:hover,
+        .submit-button:hover,
+        .login-link:hover {
+            transform: translateY(-1px);
+        }
+
+        .login-link {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .review-form {
+            display: none;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+        }
+
+        .review-form.is-open {
+            display: block;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.92rem;
+            color: var(--muted);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 12px 14px;
+            background: rgba(15, 11, 8, 0.7);
+            color: var(--text);
+            font: inherit;
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .sidebar-header p {
+            margin: 8px 0 0;
+            color: var(--muted);
+        }
+
+        .reviews-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .reviews-list-extra {
+            display: none;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .reviews-list-extra.is-open {
+            display: grid;
+        }
+
+        .review-card {
+            padding: 18px;
+        }
+
+        .review-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .review-score {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(239, 125, 50, 0.12);
+            color: var(--accent-2);
+            font-weight: 700;
+        }
+
+        .review-meta {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .review-breakdown {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .pill {
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .review-text {
+            margin: 0;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .empty-state {
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px dashed rgba(255, 255, 255, 0.14);
+            color: var(--muted);
+            background: rgba(0, 0, 0, 0.12);
+            line-height: 1.7;
+        }
+
+        .more-button {
+            width: 100%;
+            margin-top: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 14px;
+            padding: 13px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.18s ease, background-color 0.18s ease;
+        }
+
+        .more-button:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        @media (max-width: 960px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 24px 14px 36px;
+            }
+
+            .hero-body,
+            .panel,
+            .review-card {
+                padding: 18px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 3.2rem;
+            }
+
+            .panel-header,
+            .sidebar-header,
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .trigger-button,
+            .login-link {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>{{ bar.nome }}</h1>
-        <a href="{{ url_for('home') }}">Voltar para Início</a>
+    <div class="page">
+        <div class="topbar">
+            <a href="{{ url_for('home') }}">Voltar para a pagina inicial</a>
+            {% if session.get('usuario_nome') %}
+                <span>Logado como {{ session.get('usuario_nome') }}</span>
+            {% endif %}
+        </div>
+
+        <div class="layout">
+            <main class="hero">
+                <section class="hero-card">
+                    {% if bar.foto_url %}
+                        <img class="hero-image" src="{{ bar.foto_url }}" alt="Foto do bar {{ bar.nome }}">
+                    {% else %}
+                        <div class="hero-image"></div>
+                    {% endif %}
+
+                    <div class="hero-body">
+                        <span class="eyebrow">Detalhes do boteco</span>
+                        <h1>{{ bar.nome }}</h1>
+                        <p class="descricao">
+                            {{ bar.descricao or 'Um lugar para bons encontros, conversa alta e copo sempre cheio. Ainda falta uma descricao mais caprichada para esse bar.' }}
+                        </p>
+
+                        <div class="meta-grid">
+                            <div class="meta-item">
+                                <span class="meta-label">Endereco</span>
+                                <span class="meta-value">{{ bar.endereco or 'Nao informado' }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">Faixa de preco</span>
+                                <span class="meta-value">{{ bar.faixa_de_preco or 'Nao informada' }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Avalie sua experiencia</h2>
+                            <p>A pagina fica mais limpa, e a avaliacao so aparece quando voce quiser abrir.</p>
+                        </div>
+
+                        {% if session.get('usuario_id') %}
+                            <button type="button" class="trigger-button" id="toggle-review-form">
+                                Avaliar este bar
+                            </button>
+                        {% else %}
+                            <a class="login-link" href="{{ url_for('acesso') }}">Faca login para avaliar</a>
+                        {% endif %}
+                    </div>
+
+                    {% if session.get('usuario_id') %}
+                        <form
+                            action="{{ url_for('avaliar_bar', bar_id=bar.id) }}"
+                            method="POST"
+                            class="review-form"
+                            id="review-form"
+                        >
+                            <div class="form-grid">
+                                <div class="form-row">
+                                    <div>
+                                        <label for="nota">Nota geral</label>
+                                        <input type="number" name="nota" id="nota" min="1" max="5" step="0.5" required>
+                                    </div>
+
+                                    <div>
+                                        <label for="avaliacao_comida">Comida</label>
+                                        <input type="number" name="avaliacao_comida" id="avaliacao_comida" min="1" max="5" step="0.5">
+                                    </div>
+
+                                    <div>
+                                        <label for="avaliacao_bebida">Bebida</label>
+                                        <input type="number" name="avaliacao_bebida" id="avaliacao_bebida" min="1" max="5" step="0.5">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="texto_review">Comentario</label>
+                                    <textarea
+                                        name="texto_review"
+                                        id="texto_review"
+                                        rows="5"
+                                        placeholder="Conte como estava o clima, o atendimento, a cerveja e o que vale pedir."
+                                    ></textarea>
+                                </div>
+
+                                <button type="submit" class="submit-button">Publicar avaliacao</button>
+                            </div>
+                        </form>
+                    {% else %}
+                        <div class="empty-state">
+                            Voce precisa estar logado para deixar sua opiniao. Entre na sua conta e volte aqui para registrar a resenha.
+                        </div>
+                    {% endif %}
+                </section>
+            </main>
+
+            <aside class="sidebar">
+                <section class="panel">
+                    <div class="sidebar-header">
+                        <div>
+                            <h2>Reviews da galera</h2>
+                            <p>O que estao falando sobre esse lugar agora.</p>
+                        </div>
+                    </div>
+
+                    {% if avaliacoes %}
+                        <div class="reviews-list">
+                            {% for av in avaliacoes[:3] %}
+                                <article class="review-card">
+                                    <div class="review-top">
+                                        <div>
+                                            <h3>{{ av.autor.nome }}</h3>
+                                            <div class="review-meta">{{ av.data_avaliacao.strftime('%d/%m/%Y') }}</div>
+                                        </div>
+                                        <div class="review-score">{{ av.nota }} / 5</div>
+                                    </div>
+
+                                    <div class="review-breakdown">
+                                        <span class="pill">Comida: {{ av.avaliacao_comida or '-' }}</span>
+                                        <span class="pill">Bebida: {{ av.avaliacao_bebida or '-' }}</span>
+                                    </div>
+
+                                    {% if av.texto_review %}
+                                        <p class="review-text">{{ av.texto_review }}</p>
+                                    {% else %}
+                                        <p class="review-text">Sem comentario escrito, mas com nota registrada.</p>
+                                    {% endif %}
+                                </article>
+                            {% endfor %}
+                        </div>
+
+                        {% if avaliacoes|length > 3 %}
+                            <div class="reviews-list-extra" id="reviews-extra">
+                                {% for av in avaliacoes[3:] %}
+                                    <article class="review-card">
+                                        <div class="review-top">
+                                            <div>
+                                                <h3>{{ av.autor.nome }}</h3>
+                                                <div class="review-meta">{{ av.data_avaliacao.strftime('%d/%m/%Y') }}</div>
+                                            </div>
+                                            <div class="review-score">{{ av.nota }} / 5</div>
+                                        </div>
+
+                                        <div class="review-breakdown">
+                                            <span class="pill">Comida: {{ av.avaliacao_comida or '-' }}</span>
+                                            <span class="pill">Bebida: {{ av.avaliacao_bebida or '-' }}</span>
+                                        </div>
+
+                                        {% if av.texto_review %}
+                                            <p class="review-text">{{ av.texto_review }}</p>
+                                        {% else %}
+                                            <p class="review-text">Sem comentario escrito, mas com nota registrada.</p>
+                                        {% endif %}
+                                    </article>
+                                {% endfor %}
+                            </div>
+
+                            <button type="button" class="more-button" id="toggle-more-reviews">
+                                Ver mais {{ avaliacoes|length - 3 }} avaliações
+                            </button>
+                        {% endif %}
+                    {% else %}
+                        <div class="empty-state">
+                            Esse bar ainda nao tem reviews publicadas. A primeira avaliacao pode ser sua.
+                        </div>
+                    {% endif %}
+                </section>
+            </aside>
+        </div>
     </div>
 
-    {% if bar.foto_url %}
-        <img src="{{ bar.foto_url }}" alt="Foto do bar {{ bar.nome }}" style="max-height: 250px;">
-    {% endif %}
-    
-    <p><strong>Endereço:</strong> {{ bar.endereco or 'Não informado' }}</p>
-    <p><strong>Faixa de Preço:</strong> {{ bar.faixa_de_preco or 'Não informado' }}</p>
+    <script>
+        const toggleButton = document.getElementById('toggle-review-form');
+        const reviewForm = document.getElementById('review-form');
 
-    <hr>
+        if (toggleButton && reviewForm) {
+            toggleButton.addEventListener('click', () => {
+                reviewForm.classList.toggle('is-open');
+                toggleButton.textContent = reviewForm.classList.contains('is-open')
+                    ? 'Fechar avaliacao'
+                    : 'Avaliar este bar';
+            });
+        }
 
-    <h2>Deixe sua Avaliação</h2>
-    
-    {% if session.get('usuario_id') %}
-        <form action="{{ url_for('avaliar_bar', bar_id=bar.id) }}" method="POST">
-            <div class="form-group">
-                <label for="nota">Nota Geral (1 a 5)*:</label>
-                <input type="number" name="nota" id="nota" min="1" max="5" step="0.5" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="avaliacao_comida">Nota Comida (1 a 5):</label>
-                <input type="number" name="avaliacao_comida" id="avaliacao_comida" min="1" max="5" step="0.5">
-            </div>
+        const moreReviewsButton = document.getElementById('toggle-more-reviews');
+        const extraReviews = document.getElementById('reviews-extra');
 
-            <div class="form-group">
-                <label for="avaliacao_bebida">Nota Bebida (1 a 5):</label>
-                <input type="number" name="avaliacao_bebida" id="avaliacao_bebida" min="1" max="5" step="0.5">
-            </div>
-
-            <div class="form-group">
-                <label for="texto_review">Comentário:</label>
-                <textarea name="texto_review" id="texto_review" rows="4" placeholder="O que achou do bar?"></textarea>
-            </div>
-
-            <button type="submit">Enviar Avaliação</button>
-        </form>
-    {% else %}
-        <p>Você precisa estar logado para avaliar. <a href="{{ url_for('acesso') }}">Faça login aqui</a>.</p>
-    {% endif %}
-
-    <hr>
-
-    <h2>Avaliações Recentes</h2>
-    {% if avaliacoes %}
-        {% for av in avaliacoes %}
-            <div class="review-box">
-                <p>
-                    <strong>Nota:</strong> {{ av.nota }} / 5 
-                    (Comida: {{ av.avaliacao_comida or '-' }} | Bebida: {{ av.avaliacao_bebida or '-' }})
-                </p>
-                <p><strong>Por:</strong> {{ av.autor.nome }} em {{ av.data_avaliacao.strftime('%d/%m/%Y') }}</p>
-                {% if av.texto_review %}
-                    <p><em>"{{ av.texto_review }}"</em></p>
-                {% endif %}
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>Este bar ainda não possui avaliações. Seja o primeiro a avaliar!</p>
-    {% endif %}
-
+        if (moreReviewsButton && extraReviews) {
+            moreReviewsButton.addEventListener('click', () => {
+                extraReviews.classList.toggle('is-open');
+                moreReviewsButton.textContent = extraReviews.classList.contains('is-open')
+                    ? 'Ver menos avaliações'
+                    : 'Ver mais {{ avaliacoes|length - 3 }} avaliações';
+            });
+        }
+    </script>
 </body>
 </html>

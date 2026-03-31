@@ -99,6 +99,8 @@ def cadastro():
                 idade = int(idade_texto)
                 if idade < 18:
                     erro = 'Você precisa ter pelo menos 18 anos.'
+                elif idade >= 125:
+                    erro = 'Digite uma idade válida.'
                 else:
                     novo_usuario = Usuario(nome=nome, email=email, idade=idade)
                     novo_usuario.set_senha(senha)
@@ -125,8 +127,11 @@ def detalhes_bar(bar_id):
     # Busca o bar ou retorna 404
     bar = Estabelecimento.query.get_or_404(bar_id)
     
-    # Busca as avaliações deste bar
-    avaliacoes = Avaliacao.query.filter_by(estabelecimento_id=bar_id).order_by(Avaliacao.data_avaliacao.desc()).all()
+    # Busca as avaliações deste bar priorizando as melhores notas
+    avaliacoes = Avaliacao.query.filter_by(estabelecimento_id=bar_id).order_by(
+        Avaliacao.nota.desc(),
+        Avaliacao.data_avaliacao.desc()
+    ).all()
     
     return render_template('bar.html', bar=bar, avaliacoes=avaliacoes)
 
