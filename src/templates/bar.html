@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ bar.nome }} - Detalhes</title>
+    <!-- Adicionando um estilo básico, você pode adaptar ao seu CSS depois -->
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .review-box { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; }
+        input, textarea, select { width: 100%; max-width: 400px; padding: 8px; margin-top: 5px; }
+        button { padding: 10px 15px; background: #007BFF; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .header { display: flex; justify-content: space-between; align-items: center; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ bar.nome }}</h1>
+        <a href="{{ url_for('home') }}">Voltar para Início</a>
+    </div>
+
+    {% if bar.foto_url %}
+        <img src="{{ bar.foto_url }}" alt="Foto do bar {{ bar.nome }}" style="max-height: 250px;">
+    {% endif %}
+    
+    <p><strong>Endereço:</strong> {{ bar.endereco or 'Não informado' }}</p>
+    <p><strong>Faixa de Preço:</strong> {{ bar.faixa_de_preco or 'Não informado' }}</p>
+
+    <hr>
+
+    <h2>Deixe sua Avaliação</h2>
+    
+    {% if session.get('usuario_id') %}
+        <form action="{{ url_for('avaliar_bar', bar_id=bar.id) }}" method="POST">
+            <div class="form-group">
+                <label for="nota">Nota Geral (1 a 5)*:</label>
+                <input type="number" name="nota" id="nota" min="1" max="5" step="0.5" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="avaliacao_comida">Nota Comida (1 a 5):</label>
+                <input type="number" name="avaliacao_comida" id="avaliacao_comida" min="1" max="5" step="0.5">
+            </div>
+
+            <div class="form-group">
+                <label for="avaliacao_bebida">Nota Bebida (1 a 5):</label>
+                <input type="number" name="avaliacao_bebida" id="avaliacao_bebida" min="1" max="5" step="0.5">
+            </div>
+
+            <div class="form-group">
+                <label for="texto_review">Comentário:</label>
+                <textarea name="texto_review" id="texto_review" rows="4" placeholder="O que achou do bar?"></textarea>
+            </div>
+
+            <button type="submit">Enviar Avaliação</button>
+        </form>
+    {% else %}
+        <p>Você precisa estar logado para avaliar. <a href="{{ url_for('acesso') }}">Faça login aqui</a>.</p>
+    {% endif %}
+
+    <hr>
+
+    <h2>Avaliações Recentes</h2>
+    {% if avaliacoes %}
+        {% for av in avaliacoes %}
+            <div class="review-box">
+                <p>
+                    <strong>Nota:</strong> {{ av.nota }} / 5 
+                    (Comida: {{ av.avaliacao_comida or '-' }} | Bebida: {{ av.avaliacao_bebida or '-' }})
+                </p>
+                <p><strong>Por:</strong> {{ av.autor.nome }} em {{ av.data_avaliacao.strftime('%d/%m/%Y') }}</p>
+                {% if av.texto_review %}
+                    <p><em>"{{ av.texto_review }}"</em></p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Este bar ainda não possui avaliações. Seja o primeiro a avaliar!</p>
+    {% endif %}
+
+</body>
+</html>

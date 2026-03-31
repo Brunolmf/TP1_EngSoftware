@@ -1,5 +1,6 @@
 import os
 import re
+from flask import flash 
 from flask import Flask, render_template, request, session, redirect, url_for
 from dotenv import load_dotenv
 from models import db, Usuario, Estabelecimento, Avaliacao
@@ -32,6 +33,7 @@ def home():
     
     for bar, media in bares_query:
         bar_dict = {
+            'id': bar.id,
             'nome': bar.nome,
             'endereco': bar.endereco,
             'foto_url': bar.foto_url,
@@ -102,6 +104,50 @@ def cadastro():
 def sair():
     session.clear() # Limpa os dados da sessão
     return redirect(url_for('home'))
+
+
+@app.route('/bar/<int:bar_id>', methods=['GET'])
+def detalhes_bar(bar_id):
+    # Busca o bar ou retorna 404
+    bar = Estabelecimento.query.get_or_404(bar_id)
+    
+    # Busca as avaliações deste bar
+    avaliacoes = Avaliacao.query.filter_by(estabelecimento_id=bar_id).order_by(Avaliacao.data_avaliacao.desc()).all()
+    
+    return render_template('bar.html', bar=bar, avaliacoes=avaliacoes)
+
+@app.route('/bar/<int:bar_id>/avaliar', methods=['POST'])
+def avaliar_bar(bar_id):
+    # Verifica se o usuário está logado
+    if 'usuario_id' not in session:
+        return redirect(url_for('acesso'))
+    
+    bar = Estabelecimento.query.get_or_404(bar_id)
+    
+    # Captura os dados do formulário
+    nota = request.form.get('nota', type=float)
+    texto_review = request.form.get('texto_review')
+    avaliacao_comida = request.form.get('avaliacao_comida', type=float)
+    avaliacao_bebida = request.form.get('avaliacao_bebida', type=float)
+    
+    if nota is None:
+        # Aqui você pode usar flash para mensagens de erro, ou passar na URL
+        return redirect(url_for('detalhes_bar', bar_id=bar_id))
+
+    # Cria e salva a nova avaliação
+    nova_avaliacao = Avaliacao(
+        nota=nota,
+        texto_review=texto_review,
+        avaliacao_comida=avaliacao_comida,
+        avaliacao_bebida=avaliacao_bebida,
+        usuario_id=session['usuario_id'],
+        estabelecimento_id=bar.id
+    )
+    
+    db.session.add(nova_avaliacao)
+    db.session.commit()
+    
+    return redirect(url_for('detalhes_bar', bar_id=bar_id))
 
 if __name__ == '__main__':
     app.run(debug=True)

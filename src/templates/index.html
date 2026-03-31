@@ -146,18 +146,20 @@
         <h2>Botecos em Destaque</h2>
         <div class="grid-bares">
             {% for bar in bares_destaque %}
-            <div class="card-bar">
-                {% if bar.foto_url %}
-                <img src="{{ bar.foto_url }}" alt="{{ bar.nome }}">
-                {% else %}
-                <img src="https://via.placeholder.com/400x200?text=Bar+Sem+Foto" alt="Sem foto">
-                {% endif %}
-                <div class="card-content">
-                    <h3>{{ bar.nome }}</h3>
-                    <p>📍 {{ bar.endereco }}</p>
-                    <p style="color: #ffd700; margin-top: 5px; font-weight: bold;">⭐ {{ bar.nota }}</p>
+            <a href="{{ url_for('detalhes_bar', bar_id=bar.id) }}" style="text-decoration: none; color: inherit;">
+                <div class="card-bar">
+                    {% if bar.foto_url %}
+                    <img src="{{ bar.foto_url }}" alt="{{ bar.nome }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/400x200?text=Bar+Sem+Foto" alt="Sem foto">
+                    {% endif %}
+                    <div class="card-content">
+                        <h3>{{ bar.nome }}</h3>
+                        <p>📍 {{ bar.endereco }}</p>
+                        <p style="color: #ffd700; margin-top: 5px; font-weight: bold;">⭐ {{ bar.nota }}</p>
+                    </div>
                 </div>
-            </div>
+            </a>
             {% else %}
             <p>Nenhum boteco avaliado ainda.</p>
             {% endfor %}
@@ -166,18 +168,20 @@
         <h2 style="margin-top: 60px;">Descubra Mais Bares</h2>
         <div class="grid-bares">
             {% for bar in outros_bares %}
-            <div class="card-bar">
-                {% if bar.foto_url %}
-                <img src="{{ bar.foto_url }}" alt="{{ bar.nome }}">
-                {% else %}
-                <img src="https://via.placeholder.com/400x200?text=Bar+Sem+Foto" alt="Sem foto">
-                {% endif %}
-                <div class="card-content">
-                    <h3>{{ bar.nome }}</h3>
-                    <p>📍 {{ bar.endereco }}</p>
-                    <p style="color: #aaaaaa; margin-top: 5px; font-weight: bold;">Sem nota</p>
+            <a href="{{ url_for('detalhes_bar', bar_id=bar.id) }}" style="text-decoration: none; color: inherit;">
+                <div class="card-bar">
+                    {% if bar.foto_url %}
+                    <img src="{{ bar.foto_url }}" alt="{{ bar.nome }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/400x200?text=Bar+Sem+Foto" alt="Sem foto">
+                    {% endif %}
+                    <div class="card-content">
+                        <h3>{{ bar.nome }}</h3>
+                        <p>📍 {{ bar.endereco }}</p>
+                        <p style="color: #aaaaaa; margin-top: 5px; font-weight: bold;">Sem nota</p>
+                    </div>
                 </div>
-            </div>
+            </a>
             {% else %}
             <p>Não há mais bares para exibir.</p>
             {% endfor %}
