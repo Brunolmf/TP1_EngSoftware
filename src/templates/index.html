@@ -149,15 +149,99 @@
             color: var(--bg-color);
             transform: scale(1.05);
         }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .search-form:hover,
+        .search-form:focus-within {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .search-input {
+            width: 0;
+            border: none;
+            background: transparent;
+            color: var(--text-light);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            outline: none;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .search-form:hover .search-input,
+        .search-form:focus-within .search-input,
+        .search-input:not(:placeholder-shown) {
+            width: 180px;
+            padding: 5px 5px 5px 15px;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .search-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+            outline: none;
+        }
+
+        .search-form:hover .search-btn,
+        .search-form:focus-within .search-btn {
+            color: var(--primary-amber);
+        }
+
+        .search-icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Saideira</h1>
-        <div>
+        <a href="/" style="text-decoration: none;"><h1>Saideira</h1></a>
+        
+        <div class="header-actions">
+            <!-- Barra de Busca Minimalista Expansível -->
+            <form action="{{ url_for('home') }}" method="GET" class="search-form">
+                <input type="text" name="q" placeholder="Buscar bares..." value="{{ request.args.get('q', '') }}" class="search-input">
+                <button type="submit" class="search-btn" title="Buscar">
+                    <svg class="search-icon" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+
             {% if session.get('usuario_id') %}
-                <span style="color: var(--text-muted); margin-right: 15px;">Olá, <strong style="color: var(--text-light);">{{ session['usuario_nome'] }}</strong></span>
+                <span style="color: var(--text-muted);">Olá, <strong style="color: var(--text-light);">{{ session['usuario_nome'] }}</strong></span>
                 <a href="/sair" class="btn-header">Sair</a>
             {% else %}
                 <a href="/acesso" class="btn-header">Login / Criar conta</a>

@@ -23,10 +23,21 @@ with app.app_context():
 
 @app.route('/')
 def home():
-    bares_query = db.session.query(
+    termo_busca = request.args.get('q', '').strip()
+
+    # Base da query com a média
+    query = db.session.query(
         Estabelecimento,
         func.avg(Avaliacao.nota).label('media_notas')
-    ).outerjoin(Avaliacao).group_by(Estabelecimento.id).order_by(func.avg(Avaliacao.nota).desc().nulls_last()).all()
+    ).outerjoin(Avaliacao)
+
+    # Se tiver um termo de busca, aplicamos um filtro com ILIKE (insensitive)
+    if termo_busca:
+        busca = f"%{termo_busca}%"
+        query = query.filter(Estabelecimento.nome.ilike(busca))
+
+    # Agrupamos e ordenamos
+    bares_query = query.group_by(Estabelecimento.id).order_by(func.avg(Avaliacao.nota).desc().nulls_last()).all()
     
     bares_destaque = []
     outros_bares = []
@@ -39,12 +50,15 @@ def home():
             'foto_url': bar.foto_url,
             'nota': round(media, 1) if media else 'Sem nota'
         }
+        
+        # Se foi feita uma busca, não separamos tanto entre 'destaque' e 'outros' na view,
+        # ou apenas mantemos a lógica antiga. Aqui mantemos a lógica de colocar quem tem nota no destaque.
         if media:
             bares_destaque.append(bar_dict)
         else:
             outros_bares.append(bar_dict)
             
-    return render_template('index.html', bares_destaque=bares_destaque, outros_bares=outros_bares)
+    return render_template('index.html', bares_destaque=bares_destaque, outros_bares=outros_bares, termo_busca=termo_busca)
 
 @app.route('/acesso', methods=['GET', 'POST'])
 def acesso():
