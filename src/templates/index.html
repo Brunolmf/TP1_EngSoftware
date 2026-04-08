@@ -130,7 +130,16 @@
 <body>
 
     <header>
-        <a href="/" style="text-decoration: none;"><h1>Saideira</h1></a>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <a href="/" style="text-decoration: none;"><h1>Saideira</h1></a>
+        
+            {% if usuario_logado and usuario_logado.is_admin %}
+                <a href="{{ url_for('admin_usuarios') }}" class="btn-header" style="border: 1px solid var(--primary-amber); font-size: 0.8rem;">
+                    🛡️ Controle de usuários
+                </a>
+            {% endif %}
+        </div>
+        
         <div class="header-actions">
             <form action="{{ url_for('home') }}" method="GET" class="search-form">
                 <input type="text" name="q" placeholder="Buscar bares..." class="search-input" value="{{ termo_busca or '' }}">

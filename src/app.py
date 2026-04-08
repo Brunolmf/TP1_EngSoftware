@@ -231,5 +231,46 @@ def avaliar_bar(bar_id):
     
     return redirect(url_for('detalhes_bar', bar_id=bar_id))
 
+@app.route('/admin/usuarios')
+def admin_usuarios():
+    if 'usuario_id' not in session:
+        return redirect(url_for('acesso'))
+    
+    usuario_logado = Usuario.query.get(session['usuario_id'])
+    if not usuario_logado or not usuario_logado.is_admin:
+        flash('Acesso negado.')
+        return redirect(url_for('home'))
+
+    # Lista todos os usuários exceto o próprio admin logado (opcional)
+    todos_usuarios = Usuario.query.order_by(Usuario.nome).all()
+    return render_template('admin_usuarios.html', usuarios=todos_usuarios, usuario_logado=usuario_logado)
+
+@app.route('/admin/usuarios/deletar/<int:id>', methods=['POST'])
+def deletar_usuario(id):
+    if 'usuario_id' not in session:
+        return redirect(url_for('acesso'))
+    
+    admin = Usuario.query.get(session['usuario_id'])
+    if not admin or not admin.is_admin:
+        flash('Operação não permitida.')
+        return redirect(url_for('home'))
+
+    usuario_para_deletar = Usuario.query.get_or_404(id)
+
+    # Impede que um admin delete a si mesmo ou outro admin por engano (regra de segurança)
+    if usuario_para_deletar.is_admin:
+        flash('Não é possível remover um administrador.')
+        return redirect(url_for('admin_usuarios'))
+
+    try:
+        db.session.delete(usuario_para_deletar)
+        db.session.commit()
+        flash(f'Usuário {usuario_para_deletar.nome} removido com sucesso!', 'sucesso')
+    except Exception:
+        db.session.rollback()
+        flash('Erro ao remover usuário.')
+
+    return redirect(url_for('admin_usuarios'))
+
 if __name__ == '__main__':
     app.run(debug=True)

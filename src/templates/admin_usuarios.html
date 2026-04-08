@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Usuários | Saideira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --primary-amber: #d4af37;
+            --text-light: #f4f4f4;
+            --text-muted: #aaaaaa;
+            --danger: #d32f2f;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-amber);
+            border-bottom: 2px solid var(--primary-amber);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .voltar {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .voltar:hover { color: var(--primary-amber); }
+
+        /* Mensagens de Alerta compatíveis com app.py */
+        .mensagem {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .sucesso { background-color: #1f5c34; color: white; }
+        .erro { background-color: #5c1f1f; color: white; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        th, td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        th {
+            background-color: #252525;
+            color: var(--primary-amber);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        tr:hover { background-color: #2a2a2a; }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .badge-admin { background-color: var(--primary-amber); color: #000; }
+        .badge-user { background-color: #444; color: #fff; }
+
+        .btn-delete {
+            background-color: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .btn-delete:hover {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-disabled {
+            border-color: #444;
+            color: #444;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('home') }}" class="voltar">← Voltar para a Home</a>
+        
+        <h1>Painel de Controle: Usuários</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="mensagem {% if category == 'sucesso' %}sucesso{% else %}erro{% endif %}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Idade</th>
+                    <th>Tipo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td><strong>{{ usuario.nome }}</strong></td>
+                    <td style="color: var(--text-muted);">{{ usuario.email }}</td>
+                    <td>{{ usuario.idade }} anos</td>
+                    <td>
+                        {% if usuario.is_admin %}
+                            <span class="badge badge-admin">Administrador</span>
+                        {% else %}
+                            <span class="badge badge-user">Cliente</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not usuario.is_admin %}
+                            <form action="{{ url_for('deletar_usuario', id=usuario.id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja remover permanentemente o usuário {{ usuario.nome }}?');">
+                                    Excluir
+                                </button>
+                            </form>
+                        {% else %}
+                            <button class="btn-delete btn-disabled" disabled>Protegido</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                        Nenhum usuário cadastrado além de você.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
