@@ -153,6 +153,9 @@
                     </a>
                 </span>
                 <a href="/sair" class="btn-header">Sair</a>
+            {% else %}
+                <a href="{{ url_for('acesso') }}" class="btn-header">Entrar</a>
+                <a href="{{ url_for('cadastro') }}" class="btn-header" style="border: 1px solid var(--primary-amber);">Cadastrar</a>
             {% endif %}
         </div>
     </header>
