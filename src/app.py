@@ -13,7 +13,6 @@ app = Flask(__name__)
 # Configurações de Segurança
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# A SECRET_KEY é necessária para usar session
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'boteco_secreto_123')
 
 db.init_app(app)
@@ -25,18 +24,21 @@ with app.app_context():
 def home():
     termo_busca = request.args.get('q', '').strip()
 
+    # Busca o objeto do usuário logado para verificar se é admin no template
+    usuario_logado = None
+    if 'usuario_id' in session:
+        usuario_logado = Usuario.query.get(session['usuario_id'])
+
     # Base da query com a média
     query = db.session.query(
         Estabelecimento,
         func.avg(Avaliacao.nota).label('media_notas')
     ).outerjoin(Avaliacao)
 
-    # Se tiver um termo de busca, aplicamos um filtro com ILIKE (insensitive)
     if termo_busca:
         busca = f"%{termo_busca}%"
         query = query.filter(Estabelecimento.nome.ilike(busca))
 
-    # Agrupamos e ordenamos
     bares_query = query.group_by(Estabelecimento.id).order_by(func.avg(Avaliacao.nota).desc().nulls_last()).all()
     
     bares_destaque = []
@@ -51,14 +53,16 @@ def home():
             'nota': round(media, 1) if media else 'Sem nota'
         }
         
-        # Se foi feita uma busca, não separamos tanto entre 'destaque' e 'outros' na view,
-        # ou apenas mantemos a lógica antiga. Aqui mantemos a lógica de colocar quem tem nota no destaque.
         if media:
             bares_destaque.append(bar_dict)
         else:
             outros_bares.append(bar_dict)
             
-    return render_template('index.html', bares_destaque=bares_destaque, outros_bares=outros_bares, termo_busca=termo_busca)
+    return render_template('index.html', 
+                           bares_destaque=bares_destaque, 
+                           outros_bares=outros_bares, 
+                           termo_busca=termo_busca,
+                           usuario_logado=usuario_logado)
 
 @app.route('/acesso', methods=['GET', 'POST'])
 def acesso():
@@ -72,7 +76,6 @@ def acesso():
         else:
             usuario = Usuario.query.filter_by(email=email).first()
             if usuario and usuario.verificar_senha(senha):
-                # Cria a sessão do usuário
                 session['usuario_id'] = usuario.id
                 session['usuario_nome'] = usuario.nome
                 return redirect(url_for('home'))
@@ -96,7 +99,6 @@ def editar_perfil():
         flash('Campos obrigatórios não preenchidos.')
         return redirect(url_for('home'))
 
-    # Verifica duplicidade de email
     usuario_existente = Usuario.query.filter_by(email=email).first()
     if usuario_existente and usuario_existente.id != usuario.id:
         flash('Este email já está em uso.')
@@ -111,11 +113,44 @@ def editar_perfil():
             usuario.set_senha(nova_senha)
 
         db.session.commit()
-        session['usuario_nome'] = usuario.nome # Atualiza o nome na barra superior
+        session['usuario_nome'] = usuario.nome 
         flash('Perfil atualizado com sucesso!', 'sucesso')
     except Exception as e:
         db.session.rollback()
         flash('Erro ao atualizar perfil.')
+
+    return redirect(url_for('home'))
+
+@app.route('/bar/adicionar', methods=['POST'])
+def adicionar_bar():
+    if 'usuario_id' not in session:
+        flash('Você precisa estar logado.')
+        return redirect(url_for('acesso'))
+    
+    usuario = Usuario.query.get(session['usuario_id'])
+    
+    # Validação de segurança: apenas administradores podem adicionar bares
+    if not getattr(usuario, 'is_admin', False):
+        flash('Acesso negado: apenas administradores podem adicionar bares.')
+        return redirect(url_for('home'))
+
+    nome = request.form.get('nome', '').strip()
+    endereco = request.form.get('endereco', '').strip()
+    foto_url = request.form.get('foto_url', '').strip()
+
+    if not nome:
+        flash('O nome do bar é obrigatório.')
+        return redirect(url_for('home'))
+
+    try:
+        # Cria novo registro no banco de dados
+        novo_bar = Estabelecimento(nome=nome, endereco=endereco, foto_url=foto_url)
+        db.session.add(novo_bar)
+        db.session.commit()
+        flash(f'Bar "{nome}" adicionado com sucesso!', 'sucesso')
+    except Exception as e:
+        db.session.rollback()
+        flash('Erro ao adicionar bar.')
 
     return redirect(url_for('home'))
 
@@ -145,7 +180,6 @@ def cadastro():
                     db.session.add(novo_usuario)
                     db.session.commit()
                     
-                    # Login automático após cadastro
                     session['usuario_id'] = novo_usuario.id
                     session['usuario_nome'] = novo_usuario.nome
                     return redirect(url_for('home'))
@@ -156,16 +190,12 @@ def cadastro():
 
 @app.route('/sair')
 def sair():
-    session.clear() # Limpa os dados da sessão
+    session.clear() 
     return redirect(url_for('home'))
-
 
 @app.route('/bar/<int:bar_id>', methods=['GET'])
 def detalhes_bar(bar_id):
-    # Busca o bar ou retorna 404
     bar = Estabelecimento.query.get_or_404(bar_id)
-    
-    # Busca as avaliações deste bar priorizando as melhores notas
     avaliacoes = Avaliacao.query.filter_by(estabelecimento_id=bar_id).order_by(
         Avaliacao.nota.desc(),
         Avaliacao.data_avaliacao.desc()
@@ -175,23 +205,18 @@ def detalhes_bar(bar_id):
 
 @app.route('/bar/<int:bar_id>/avaliar', methods=['POST'])
 def avaliar_bar(bar_id):
-    # Verifica se o usuário está logado
     if 'usuario_id' not in session:
         return redirect(url_for('acesso'))
     
     bar = Estabelecimento.query.get_or_404(bar_id)
-    
-    # Captura os dados do formulário
     nota = request.form.get('nota', type=float)
     texto_review = request.form.get('texto_review')
     avaliacao_comida = request.form.get('avaliacao_comida', type=float)
     avaliacao_bebida = request.form.get('avaliacao_bebida', type=float)
     
     if nota is None:
-        # Aqui você pode usar flash para mensagens de erro, ou passar na URL
         return redirect(url_for('detalhes_bar', bar_id=bar_id))
 
-    # Cria e salva a nova avaliação
     nova_avaliacao = Avaliacao(
         nota=nota,
         texto_review=texto_review,

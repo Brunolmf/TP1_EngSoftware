@@ -74,8 +74,8 @@
         .card-bar img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid #d32f2f; }
         .card-content { padding: 15px; }
 
-        .btn { text-decoration: none; padding: 15px 30px; border-radius: 5px; font-size: 1.1rem; font-weight: bold; margin: 0 10px; transition: 0.3s; display: inline-block; }
-        .btn-primary { background-color: var(--primary-amber); color: var(--bg-color); border: none; cursor: pointer; }
+        .btn { text-decoration: none; padding: 15px 30px; border-radius: 5px; font-size: 1.1rem; font-weight: bold; margin: 0 10px; transition: 0.3s; display: inline-block; border: none; cursor: pointer; }
+        .btn-primary { background-color: var(--primary-amber); color: var(--bg-color); }
         .btn-secondary { background-color: transparent; color: var(--primary-amber); border: 2px solid var(--primary-amber); }
         
         .btn-header { text-decoration: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; font-weight: bold; background-color: transparent; color: var(--primary-amber); transition: 0.3s ease; }
@@ -163,7 +163,12 @@
     <div class="hero">
         <h2>O seu diário de botecos em Belo Horizonte</h2>
         <p>Acompanhe seus amigos, avalie a estufa e descubra o seu próximo bar favorito na capital mundial do boteco.</p>
-        <a href="#bares" class="btn btn-secondary">Explorar bares</a>
+        
+        {% if usuario_logado and usuario_logado.is_admin %}
+            <button onclick="abrirModalBar()" class="btn btn-primary">Adicionar bar</button>
+        {% else %}
+            <a href="#bares" class="btn btn-secondary">Explorar bares</a>
+        {% endif %}
     </div>
 
     <div id="bares" class="container-bares">
@@ -233,24 +238,65 @@
         </div>
     </div>
 
+    <div id="modalBar" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModalBar()">&times;</span>
+            <h2 style="color: var(--primary-amber); margin-top: 0;">Novo Boteco</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Cadastre um novo estabelecimento na plataforma.</p>
+            
+            <form action="/bar/adicionar" method="POST">
+                <div class="form-group-modal">
+                    <label>Nome do Bar</label>
+                    <input type="text" name="nome" placeholder="Ex: Bar do Marcinho" required>
+                </div>
+                <div class="form-group-modal">
+                    <label>Endereço</label>
+                    <input type="text" name="endereco" placeholder="Rua, Número - Bairro">
+                </div>
+                <div class="form-group-modal">
+                    <label>URL da Foto</label>
+                    <input type="url" name="foto_url" placeholder="https://link-da-imagem.jpg">
+                    <small>Deixe em branco para usar imagem padrão.</small>
+                </div>
+                <div style="margin-top: 25px;">
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 14px; border-radius: 8px; font-weight: bold;">Cadastrar Bar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // Função para abrir o modal
+        // Funções Modal Perfil
         function abrirModal() {
             document.getElementById('modalPerfil').style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Trava o scroll da página ao fundo
+            document.body.style.overflow = 'hidden';
         }
 
-        // Função para fechar o modal
         function fecharModal() {
             document.getElementById('modalPerfil').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Destrava o scroll
+            document.body.style.overflow = 'auto';
         }
 
-        // Fecha o modal se o usuário clicar em qualquer lugar fora da caixa branca
+        // Funções Modal Bar
+        function abrirModalBar() {
+            document.getElementById('modalBar').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharModalBar() {
+            document.getElementById('modalBar').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fecha modais ao clicar fora
         window.onclick = function(event) {
-            let modal = document.getElementById('modalPerfil');
-            if (event.target == modal) {
+            let modalPerfil = document.getElementById('modalPerfil');
+            let modalBar = document.getElementById('modalBar');
+            if (event.target == modalPerfil) {
                 fecharModal();
+            }
+            if (event.target == modalBar) {
+                fecharModalBar();
             }
         }
     </script>
