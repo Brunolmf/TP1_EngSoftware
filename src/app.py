@@ -84,42 +84,53 @@ def acesso():
 
     return render_template('acesso.html', erro=erro)
 
-@app.route('/perfil/editar', methods=['POST'])
+@app.route('/perfil', methods=['GET', 'POST'])
 def editar_perfil():
+    # 1. Verificação de Sessão: Se não estiver logado, vai para o login
     if 'usuario_id' not in session:
         return redirect(url_for('acesso'))
     
     usuario = Usuario.query.get(session['usuario_id'])
-    nome = request.form.get('nome', '').strip()
-    email = request.form.get('email', '').strip().lower()
-    idade_texto = request.form.get('idade', '').strip()
-    nova_senha = request.form.get('senha', '')
+    
+    # 2. Lógica de Salvamento (Quando o usuário envia o formulário)
+    if request.method == 'POST':
+        nome = request.form.get('nome', '').strip()
+        email = request.form.get('email', '').strip().lower()
+        idade_texto = request.form.get('idade', '').strip()
+        nova_senha = request.form.get('senha', '')
 
-    if not nome or not email or not idade_texto:
-        flash('Campos obrigatórios não preenchidos.')
-        return redirect(url_for('home'))
+        # Validações básicas
+        if not nome or not email or not idade_texto:
+            flash('Campos obrigatórios não preenchidos.', 'erro')
+            return redirect(url_for('editar_perfil'))
 
-    usuario_existente = Usuario.query.filter_by(email=email).first()
-    if usuario_existente and usuario_existente.id != usuario.id:
-        flash('Este email já está em uso.')
-        return redirect(url_for('home'))
+        # Verifica se o email novo já pertence a outra pessoa
+        usuario_existente = Usuario.query.filter_by(email=email).first()
+        if usuario_existente and usuario_existente.id != usuario.id:
+            flash('Este email já está em uso.', 'erro')
+            return redirect(url_for('editar_perfil'))
 
-    try:
-        usuario.nome = nome
-        usuario.email = email
-        usuario.idade = int(idade_texto)
-        
-        if nova_senha:
-            usuario.set_senha(nova_senha)
+        try:
+            usuario.nome = nome
+            usuario.email = email
+            usuario.idade = int(idade_texto)
+            
+            # Só altera a senha se o usuário digitou algo no campo
+            if nova_senha:
+                usuario.set_senha(nova_senha)
 
-        db.session.commit()
-        session['usuario_nome'] = usuario.nome 
-        flash('Perfil atualizado com sucesso!', 'sucesso')
-    except Exception as e:
-        db.session.rollback()
-        flash('Erro ao atualizar perfil.')
+            db.session.commit()
+            session['usuario_nome'] = usuario.nome # Atualiza o nome na barra superior
+            flash('Perfil atualizado com sucesso!', 'sucesso')
+            return redirect(url_for('editar_perfil'))
+            
+        except Exception as e:
+            db.session.rollback()
+            flash('Erro ao atualizar perfil.', 'erro')
+            return redirect(url_for('editar_perfil'))
 
-    return redirect(url_for('home'))
+    # 3. Lógica de Exibição (GET): Renderiza a página com os dados do usuário
+    return render_template('perfil.html', usuario=usuario)
 
 @app.route('/bar/adicionar', methods=['POST'])
 def adicionar_bar():
