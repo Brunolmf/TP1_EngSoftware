@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saideira | A rede social do boteco</title>
-    <!-- Fontes do Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #121212; /* Carvão/quase preto */
-            --card-bg: #1e1e1e; /* Levemente mais claro */
-            --primary-amber: #d4af37; /* Âmbar/dourado escuro */
-            --accent-bordo: #800020; /* Bordô */
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --primary-amber: #d4af37;
+            --accent-bordo: #800020;
             --text-light: #f4f4f4;
             --text-muted: #aaaaaa;
             --font-serif: 'Playfair Display', serif;
@@ -29,9 +28,8 @@
             text-align: center;
         }
         
-        h1, h2, h3 {
-            font-family: var(--font-serif);
-        }
+        h1, h2, h3 { font-family: var(--font-serif); }
+
         header {
             position: sticky;
             top: 0;
@@ -46,57 +44,24 @@
             align-items: center;
         }
 
-        header h1{
-            color: var(--primary-amber);
-            margin: 0;
-            font-size: 2.5rem;
-        }
+        header h1 { color: var(--primary-amber); margin: 0; font-size: 2.5rem; }
 
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
         .hero {
             position: relative;
-            padding: 120px 20px; /* Mais espaço para dar destaque */
-            background-image: linear-gradient(
-                rgba(18, 18, 18, 0.85), 
-                rgba(18, 18, 18, 0.85)
-            ), url("{{ url_for('static', filename='hero.jpg') }}"); /* Imagem salva localmente na pasta static */
+            padding: 120px 20px;
+            background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url("{{ url_for('static', filename='hero.jpg') }}");
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efeito parallax suave */
-            text-align: center;
-            border-bottom: 2px solid var(--primary-amber); /* Linha dourada discreta na base */
+            background-attachment: fixed;
+            border-bottom: 2px solid var(--primary-amber);
         }
 
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Dá leitura ao texto sobre a imagem */
-        }
+        .hero h2 { font-size: 3.5rem; margin-bottom: 10px; text-shadow: 2px 2px 8px rgba(0,0,0,0.8); }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 20px auto; color: #dcdcdc; }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 20px auto;
-            color: #dcdcdc; /* Um tom de cinza mais claro */
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
-        }
-        .botoes {
-            margin-top: 40px;
-        }
-        .container-bares {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .grid-bares {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
+        .container-bares { padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+        .grid-bares { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        
         .card-bar {
             background-color: #2a2a2a;
             border-radius: 8px;
@@ -105,163 +70,77 @@
             transition: transform 0.3s;
             text-align: left;
         }
-        .card-bar:hover {
-            transform: translateY(-5px);
-        }
-        .card-bar img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid #d32f2f;
-        }
-        .card-content {
-            padding: 15px;
-        }
-        .card-content h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.3rem;
-            color: #ffffff;
-        }
-        .card-content p {
-            margin: 0;
-            font-size: 0.95rem;
-            color: #aaaaaa;
-        }
-        .btn {
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin: 0 10px;
-            transition: 0.3s;
-        }
-        .btn-primary {
-            background-color: var(--primary-amber);
-            color: var(--bg-color);
-        }
-        .btn-primary:hover {
-            background-color: #f7d560; /* Âmbar mais claro no hover */
-            transform: scale(1.05);
-        }
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--primary-amber);
-            border: 2px solid var(--primary-amber);
-        }
-        .btn-secondary:hover {
-            background-color: var(--primary-amber);
-            color: var(--bg-color);
-            transform: scale(1.05);
-        }
-        .btn-header {
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            background-color: transparent;
-            color: var(--primary-amber);
-            transition: 0.3s ease;
-        }
-        .btn-header:hover {
-            background-color: var(--primary-amber);
-            color: var(--bg-color);
-            transform: scale(1.05);
-        }
+        .card-bar:hover { transform: translateY(-5px); }
+        .card-bar img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid #d32f2f; }
+        .card-content { padding: 15px; }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        .btn { text-decoration: none; padding: 15px 30px; border-radius: 5px; font-size: 1.1rem; font-weight: bold; margin: 0 10px; transition: 0.3s; display: inline-block; }
+        .btn-primary { background-color: var(--primary-amber); color: var(--bg-color); border: none; cursor: pointer; }
+        .btn-secondary { background-color: transparent; color: var(--primary-amber); border: 2px solid var(--primary-amber); }
+        
+        .btn-header { text-decoration: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; font-weight: bold; background-color: transparent; color: var(--primary-amber); transition: 0.3s ease; }
+        .btn-header:hover { background-color: var(--primary-amber); color: var(--bg-color); }
 
-        .search-form {
-            display: flex;
-            align-items: center;
-            background: transparent;
-            border-radius: 20px;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
+        .header-actions { display: flex; align-items: center; gap: 20px; }
 
-        .search-form:hover,
-        .search-form:focus-within {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        /* Estilos da Busca */
+        .search-form { display: flex; align-items: center; background: transparent; border-radius: 20px; border: 1px solid transparent; transition: all 0.3s ease; }
+        .search-input { width: 0; border: none; background: transparent; color: var(--text-light); outline: none; transition: all 0.3s ease; padding: 0; }
+        .search-form:hover .search-input, .search-form:focus-within .search-input { width: 180px; padding: 5px 15px; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; }
+        .search-btn { background: transparent; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.2rem; }
 
-        .search-input {
-            width: 0;
-            border: none;
-            background: transparent;
-            color: var(--text-light);
-            font-family: var(--font-sans);
-            font-size: 0.95rem;
-            outline: none;
-            padding: 0;
-            transition: all 0.3s ease;
+        /* ESTILOS DO MODAL (POPUP) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
         }
+        .modal-content {
+            background-color: #1e1e1e;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid var(--primary-amber);
+            width: 90%; max-width: 400px;
+            border-radius: 16px;
+            position: relative;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 30px; cursor: pointer; color: var(--text-muted); line-height: 1; }
+        .close-btn:hover { color: var(--primary-amber); }
+        
+        .form-group-modal { margin-bottom: 15px; }
+        .form-group-modal label { display: block; margin-bottom: 5px; color: var(--primary-amber); font-size: 0.9rem; font-weight: bold; }
+        .form-group-modal input { width: 100%; padding: 12px; box-sizing: border-box; background: #111; border: 1px solid #444; color: #fff; border-radius: 8px; font-family: var(--font-sans); }
+        .form-group-modal small { color: var(--text-muted); font-size: 0.75rem; display: block; margin-top: 4px; }
 
-        .search-form:hover .search-input,
-        .search-form:focus-within .search-input,
-        .search-input:not(:placeholder-shown) {
-            width: 180px;
-            padding: 5px 5px 5px 15px;
-        }
+        .usuario-click { color: var(--primary-amber); cursor: pointer; text-decoration: underline; transition: opacity 0.2s; }
+        .usuario-click:hover { opacity: 0.8; }
 
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .search-btn {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            color: var(--text-muted);
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color 0.3s ease;
-            outline: none;
-        }
-
-        .search-form:hover .search-btn,
-        .search-form:focus-within .search-btn {
-            color: var(--primary-amber);
-        }
-
-        .search-icon {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            fill: none;
-        }
+        /* Mensagens de Alerta */
+        .flash-messages { padding: 10px 40px; }
+        .flash-message { padding: 12px; border-radius: 8px; margin-bottom: 10px; color: white; font-weight: bold; }
+        .flash-sucesso { background-color: #1f5c34; }
+        .flash-erro { background-color: #5c1f1f; }
     </style>
 </head>
 <body>
 
     <header>
         <a href="/" style="text-decoration: none;"><h1>Saideira</h1></a>
-        
         <div class="header-actions">
-            <!-- Barra de Busca Minimalista Expansível -->
             <form action="{{ url_for('home') }}" method="GET" class="search-form">
-                <input type="text" name="q" placeholder="Buscar bares..." value="{{ request.args.get('q', '') }}" class="search-input">
-                <button type="submit" class="search-btn" title="Buscar">
-                    <svg class="search-icon" viewBox="0 0 24 24">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                </button>
+                <input type="text" name="q" placeholder="Buscar bares..." class="search-input" value="{{ termo_busca or '' }}">
+                <button type="submit" class="search-btn">🔍</button>
             </form>
 
             {% if session.get('usuario_id') %}
-                <span style="color: var(--text-muted);">Olá, <strong style="color: var(--text-light);">{{ session['usuario_nome'] }}</strong></span>
+                <span style="color: var(--text-muted);">
+                    Olá, <strong class="usuario-click" onclick="abrirModal()">{{ session['usuario_nome'] }}</strong>
+                </span>
                 <a href="/sair" class="btn-header">Sair</a>
             {% else %}
                 <a href="/acesso" class="btn-header">Login / Criar conta</a>
@@ -269,60 +148,112 @@
         </div>
     </header>
 
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-message {% if category == 'sucesso' %}flash-sucesso{% else %}flash-erro{% endif %}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+    </div>
+
     <div class="hero">
         <h2>O seu diário de botecos em Belo Horizonte</h2>
-        <p>Acompanhe seus amigos, avalie a estufa, dê nota para a cerveja gelada e descubra o seu próximo bar favorito na capital mundial do boteco.</p>
-        
-        <div class="botoes">
-            <a href="#bares" class="btn btn-secondary">Explorar bares</a>
-        </div>
+        <p>Acompanhe seus amigos, avalie a estufa e descubra o seu próximo bar favorito na capital mundial do boteco.</p>
+        <a href="#bares" class="btn btn-secondary">Explorar bares</a>
     </div>
 
     <div id="bares" class="container-bares">
         <h2>Botecos em Destaque</h2>
         <div class="grid-bares">
             {% for bar in bares_destaque %}
-            <a href="{{ url_for('detalhes_bar', bar_id=bar.id) }}" style="text-decoration: none; color: inherit;">
+            <a href="{{ url_for('detalhes_bar', bar_id=bar['id']) }}" style="text-decoration: none; color: inherit;">
                 <div class="card-bar">
-                    {% if bar.foto_url %}
-                    <img src="{{ bar.foto_url }}" alt="{{ bar.nome }}">
-                    {% else %}
-                    <img src="https://via.placeholder.com/400x200?text=Bar+Sem+Foto" alt="Sem foto">
-                    {% endif %}
+                    <img src="{{ bar['foto_url'] or 'https://via.placeholder.com/400x200?text=Bar+Sem+Foto' }}" alt="{{ bar['nome'] }}">
                     <div class="card-content">
-                        <h3>{{ bar.nome }}</h3>
-                        <p>📍 {{ bar.endereco }}</p>
-                        <p style="color: #ffd700; margin-top: 5px; font-weight: bold;">⭐ {{ bar.nota }}</p>
+                        <h3>{{ bar['nome'] }}</h3>
+                        <p>📍 {{ bar['endereco'] or 'Endereço não informado' }}</p>
+                        <p style="color: #ffd700; font-weight: bold; margin-top: 8px;">⭐ {{ bar['nota'] }}</p>
                     </div>
                 </div>
             </a>
-            {% else %}
-            <p>Nenhum boteco avaliado ainda.</p>
             {% endfor %}
         </div>
 
-        <h2 style="margin-top: 60px;">Descubra Mais Bares</h2>
+        {% if outros_bares %}
+        <h2 style="margin-top: 60px;">Outros Bares</h2>
         <div class="grid-bares">
             {% for bar in outros_bares %}
-            <a href="{{ url_for('detalhes_bar', bar_id=bar.id) }}" style="text-decoration: none; color: inherit;">
+            <a href="{{ url_for('detalhes_bar', bar_id=bar['id']) }}" style="text-decoration: none; color: inherit;">
                 <div class="card-bar">
-                    {% if bar.foto_url %}
-                    <img src="{{ bar.foto_url }}" alt="{{ bar.nome }}">
-                    {% else %}
-                    <img src="https://via.placeholder.com/400x200?text=Bar+Sem+Foto" alt="Sem foto">
-                    {% endif %}
+                    <img src="{{ bar['foto_url'] or 'https://via.placeholder.com/400x200?text=Bar+Sem+Foto' }}" alt="{{ bar['nome'] }}">
                     <div class="card-content">
-                        <h3>{{ bar.nome }}</h3>
-                        <p>📍 {{ bar.endereco }}</p>
-                        <p style="color: #aaaaaa; margin-top: 5px; font-weight: bold;">Sem nota</p>
+                        <h3>{{ bar['nome'] }}</h3>
+                        <p>📍 {{ bar['endereco'] or 'Endereço não informado' }}</p>
+                        <p style="color: #aaaaaa; font-weight: bold; margin-top: 8px;">{{ bar['nota'] }}</p>
                     </div>
                 </div>
             </a>
-            {% else %}
-            <p>Não há mais bares para exibir.</p>
             {% endfor %}
         </div>
+        {% endif %}
     </div>
+
+    <div id="modalPerfil" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModal()">&times;</span>
+            <h2 style="color: var(--primary-amber); margin-top: 0;">Meus Dados</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Atualize suas informações de perfil abaixo.</p>
+            
+            <form action="/perfil/editar" method="POST">
+                <div class="form-group-modal">
+                    <label>Nome</label>
+                    <input type="text" name="nome" value="{{ session['usuario_nome'] }}" required>
+                </div>
+                <div class="form-group-modal">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Seu novo email" required>
+                </div>
+                <div class="form-group-modal">
+                    <label>Idade</label>
+                    <input type="number" name="idade" min="18" placeholder="Sua idade" required>
+                </div>
+                <div class="form-group-modal">
+                    <label>Nova Senha</label>
+                    <input type="password" name="senha" placeholder="Deixe em branco para não alterar">
+                    <small>Mínimo de 8 caracteres se for alterar.</small>
+                </div>
+                <div style="margin-top: 25px;">
+                    <button type="submit" class="btn-primary" style="width: 100%; padding: 14px; border-radius: 8px; font-weight: bold;">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir o modal
+        function abrirModal() {
+            document.getElementById('modalPerfil').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Trava o scroll da página ao fundo
+        }
+
+        // Função para fechar o modal
+        function fecharModal() {
+            document.getElementById('modalPerfil').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Destrava o scroll
+        }
+
+        // Fecha o modal se o usuário clicar em qualquer lugar fora da caixa branca
+        window.onclick = function(event) {
+            let modal = document.getElementById('modalPerfil');
+            if (event.target == modal) {
+                fecharModal();
+            }
+        }
+    </script>
 
 </body>
 </html>

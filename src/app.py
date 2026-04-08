@@ -81,6 +81,44 @@ def acesso():
 
     return render_template('acesso.html', erro=erro)
 
+@app.route('/perfil/editar', methods=['POST'])
+def editar_perfil():
+    if 'usuario_id' not in session:
+        return redirect(url_for('acesso'))
+    
+    usuario = Usuario.query.get(session['usuario_id'])
+    nome = request.form.get('nome', '').strip()
+    email = request.form.get('email', '').strip().lower()
+    idade_texto = request.form.get('idade', '').strip()
+    nova_senha = request.form.get('senha', '')
+
+    if not nome or not email or not idade_texto:
+        flash('Campos obrigatórios não preenchidos.')
+        return redirect(url_for('home'))
+
+    # Verifica duplicidade de email
+    usuario_existente = Usuario.query.filter_by(email=email).first()
+    if usuario_existente and usuario_existente.id != usuario.id:
+        flash('Este email já está em uso.')
+        return redirect(url_for('home'))
+
+    try:
+        usuario.nome = nome
+        usuario.email = email
+        usuario.idade = int(idade_texto)
+        
+        if nova_senha:
+            usuario.set_senha(nova_senha)
+
+        db.session.commit()
+        session['usuario_nome'] = usuario.nome # Atualiza o nome na barra superior
+        flash('Perfil atualizado com sucesso!', 'sucesso')
+    except Exception as e:
+        db.session.rollback()
+        flash('Erro ao atualizar perfil.')
+
+    return redirect(url_for('home'))
+
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     erro = None
