@@ -140,7 +140,6 @@ def adicionar_bar():
     
     usuario = Usuario.query.get(session['usuario_id'])
     
-    # Restrição: Apenas admins podem adicionar (conforme sua lógica original)
     if not getattr(usuario, 'is_admin', False):
         flash('Acesso negado: apenas administradores podem adicionar bares.', 'erro')
         return redirect(url_for('home'))
@@ -150,14 +149,13 @@ def adicionar_bar():
         endereco = request.form.get('endereco', '').strip()
         foto_url = request.form.get('foto_url', '').strip()
         faixa_de_preco = request.form.get('faixa_de_preco', '$')
-        descricao = request.form.get('descricao', '').strip()
+        # A LINHA DA DESCRICAO FOI REMOVIDA DAQUI
 
         if not nome or not endereco:
             flash('Nome e Endereço são campos obrigatórios.', 'erro')
             return redirect(url_for('adicionar_bar'))
 
         try:
-            # Note: Adicionamos descricao e faixa_de_preco ao construtor
             novo_bar = Estabelecimento(
                 nome=nome, 
                 endereco=endereco, 
@@ -165,9 +163,7 @@ def adicionar_bar():
                 faixa_de_preco=faixa_de_preco,
                 adicionado_por=usuario.id
             )
-            # Se o seu modelo Estabelecimento não tiver o campo 'descricao' ainda, 
-            # você precisará adicionar no models.py ou ignorar esta linha abaixo.
-            # novo_bar.descricao = descricao 
+            # A LINHA QUE TENTAVA SALVAR A DESCRICAO FOI REMOVIDA
             
             db.session.add(novo_bar)
             db.session.commit()
@@ -178,7 +174,6 @@ def adicionar_bar():
             flash('Erro técnico ao salvar no banco de dados.', 'erro')
             return redirect(url_for('adicionar_bar'))
 
-    # Se for GET, apenas renderiza a página
     return render_template('adicionar_bar.html')
 
 @app.route('/cadastro', methods=['GET', 'POST'])
