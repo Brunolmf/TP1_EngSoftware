@@ -132,38 +132,54 @@ def editar_perfil():
     # 3. Lógica de Exibição (GET): Renderiza a página com os dados do usuário
     return render_template('perfil.html', usuario=usuario)
 
-@app.route('/bar/adicionar', methods=['POST'])
+@app.route('/bar/adicionar', methods=['GET', 'POST'])
 def adicionar_bar():
     if 'usuario_id' not in session:
-        flash('Você precisa estar logado.')
+        flash('Você precisa estar logado para acessar esta página.', 'erro')
         return redirect(url_for('acesso'))
     
     usuario = Usuario.query.get(session['usuario_id'])
     
-    # Validação de segurança: apenas administradores podem adicionar bares
+    # Restrição: Apenas admins podem adicionar (conforme sua lógica original)
     if not getattr(usuario, 'is_admin', False):
-        flash('Acesso negado: apenas administradores podem adicionar bares.')
+        flash('Acesso negado: apenas administradores podem adicionar bares.', 'erro')
         return redirect(url_for('home'))
 
-    nome = request.form.get('nome', '').strip()
-    endereco = request.form.get('endereco', '').strip()
-    foto_url = request.form.get('foto_url', '').strip()
+    if request.method == 'POST':
+        nome = request.form.get('nome', '').strip()
+        endereco = request.form.get('endereco', '').strip()
+        foto_url = request.form.get('foto_url', '').strip()
+        faixa_de_preco = request.form.get('faixa_de_preco', '$')
+        descricao = request.form.get('descricao', '').strip()
 
-    if not nome:
-        flash('O nome do bar é obrigatório.')
-        return redirect(url_for('home'))
+        if not nome or not endereco:
+            flash('Nome e Endereço são campos obrigatórios.', 'erro')
+            return redirect(url_for('adicionar_bar'))
 
-    try:
-        # Cria novo registro no banco de dados
-        novo_bar = Estabelecimento(nome=nome, endereco=endereco, foto_url=foto_url)
-        db.session.add(novo_bar)
-        db.session.commit()
-        flash(f'Bar "{nome}" adicionado com sucesso!', 'sucesso')
-    except Exception as e:
-        db.session.rollback()
-        flash('Erro ao adicionar bar.')
+        try:
+            # Note: Adicionamos descricao e faixa_de_preco ao construtor
+            novo_bar = Estabelecimento(
+                nome=nome, 
+                endereco=endereco, 
+                foto_url=foto_url,
+                faixa_de_preco=faixa_de_preco,
+                adicionado_por=usuario.id
+            )
+            # Se o seu modelo Estabelecimento não tiver o campo 'descricao' ainda, 
+            # você precisará adicionar no models.py ou ignorar esta linha abaixo.
+            # novo_bar.descricao = descricao 
+            
+            db.session.add(novo_bar)
+            db.session.commit()
+            flash(f'Boteco "{nome}" cadastrado com sucesso!', 'sucesso')
+            return redirect(url_for('home'))
+        except Exception as e:
+            db.session.rollback()
+            flash('Erro técnico ao salvar no banco de dados.', 'erro')
+            return redirect(url_for('adicionar_bar'))
 
-    return redirect(url_for('home'))
+    # Se for GET, apenas renderiza a página
+    return render_template('adicionar_bar.html')
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():

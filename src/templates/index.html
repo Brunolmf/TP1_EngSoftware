@@ -174,7 +174,7 @@
         <p>Acompanhe seus amigos, avalie a estufa e descubra o seu próximo bar favorito na capital mundial do boteco.</p>
         
         {% if usuario_logado and usuario_logado.is_admin %}
-            <button onclick="abrirModalBar()" class="btn btn-primary">Adicionar bar</button>
+            <a href="{{ url_for('adicionar_bar') }}" class="btn btn-primary">Adicionar bar</a>
         {% else %}
             <a href="#bares" class="btn btn-secondary">Explorar bares</a>
         {% endif %}
