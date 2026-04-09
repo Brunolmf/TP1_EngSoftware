@@ -50,10 +50,12 @@ class Avaliacao(db.Model):
     __tablename__ = 'avaliacoes'
     
     id = db.Column(db.Integer, primary_key=True)
-    nota = db.Column(db.Float, nullable=False) # Ex: 1 a 5 estrelas
+    nota = db.Column(db.Float, nullable=False) # Media das categorias avaliadas
     texto_review = db.Column(db.Text, nullable=True)
     avaliacao_comida = db.Column(db.Float, nullable=True) # Ex: 1.0 a 5.0
     avaliacao_bebida = db.Column(db.Float, nullable=True) # Ex: 1.0 a 5.0
+    avaliacao_ambiente = db.Column(db.Float, nullable=True) # Ex: 1.0 a 5.0
+    avaliacao_servico = db.Column(db.Float, nullable=True) # Ex: 1.0 a 5.0
     data_avaliacao = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     
     # Chaves Estrangeiras conectando a avaliação ao usuário e ao bar

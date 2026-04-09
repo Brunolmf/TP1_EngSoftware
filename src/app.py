@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from dotenv import load_dotenv
 from models import db, Usuario, Estabelecimento, Avaliacao
 from sqlalchemy import func
+from sqlalchemy import text
 
 load_dotenv()
 
@@ -19,6 +20,15 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+    db.session.execute(text(
+        "ALTER TABLE avaliacoes "
+        "ADD COLUMN IF NOT EXISTS avaliacao_ambiente FLOAT"
+    ))
+    db.session.execute(text(
+        "ALTER TABLE avaliacoes "
+        "ADD COLUMN IF NOT EXISTS avaliacao_servico FLOAT"
+    ))
+    db.session.commit()
 
 @app.route('/')
 def home():
@@ -231,19 +241,31 @@ def avaliar_bar(bar_id):
         return redirect(url_for('acesso'))
     
     bar = Estabelecimento.query.get_or_404(bar_id)
-    nota = request.form.get('nota', type=float)
     texto_review = request.form.get('texto_review')
-    avaliacao_comida = request.form.get('avaliacao_comida', type=float)
     avaliacao_bebida = request.form.get('avaliacao_bebida', type=float)
+    avaliacao_comida = request.form.get('avaliacao_comida', type=float)
+    avaliacao_ambiente = request.form.get('avaliacao_ambiente', type=float)
+    avaliacao_servico = request.form.get('avaliacao_servico', type=float)
     
-    if nota is None:
+    categorias = [
+        avaliacao_bebida,
+        avaliacao_comida,
+        avaliacao_ambiente,
+        avaliacao_servico
+    ]
+
+    if any(nota is None for nota in categorias):
         return redirect(url_for('detalhes_bar', bar_id=bar_id))
+
+    nota = round(sum(categorias) / len(categorias), 1)
 
     nova_avaliacao = Avaliacao(
         nota=nota,
         texto_review=texto_review,
         avaliacao_comida=avaliacao_comida,
         avaliacao_bebida=avaliacao_bebida,
+        avaliacao_ambiente=avaliacao_ambiente,
+        avaliacao_servico=avaliacao_servico,
         usuario_id=session['usuario_id'],
         estabelecimento_id=bar.id
     )

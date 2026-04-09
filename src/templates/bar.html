@@ -229,7 +229,7 @@
 
         .form-row {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
         }
 
@@ -467,20 +467,26 @@
                             <div class="form-grid">
                                 <div class="form-row">
                                     <div>
-                                        <label for="nota">Nota geral</label>
-                                        <input type="number" name="nota" id="nota" min="1" max="5" step="0.5" required>
+                                        <label for="avaliacao_bebida">Bebida</label>
+                                        <input type="number" name="avaliacao_bebida" id="avaliacao_bebida" min="1" max="5" step="0.5" required>
                                     </div>
 
                                     <div>
                                         <label for="avaliacao_comida">Comida</label>
-                                        <input type="number" name="avaliacao_comida" id="avaliacao_comida" min="1" max="5" step="0.5">
+                                        <input type="number" name="avaliacao_comida" id="avaliacao_comida" min="1" max="5" step="0.5" required>
                                     </div>
 
                                     <div>
-                                        <label for="avaliacao_bebida">Bebida</label>
-                                        <input type="number" name="avaliacao_bebida" id="avaliacao_bebida" min="1" max="5" step="0.5">
+                                        <label for="avaliacao_ambiente">Ambiente</label>
+                                        <input type="number" name="avaliacao_ambiente" id="avaliacao_ambiente" min="1" max="5" step="0.5" required>
+                                    </div>
+
+                                    <div>
+                                        <label for="avaliacao_servico">Servico</label>
+                                        <input type="number" name="avaliacao_servico" id="avaliacao_servico" min="1" max="5" step="0.5" required>
                                     </div>
                                 </div>
+
 
                                 <div>
                                     <label for="texto_review">Comentario</label>
@@ -525,8 +531,10 @@
                                     </div>
 
                                     <div class="review-breakdown">
-                                        <span class="pill">Comida: {{ av.avaliacao_comida or '-' }}</span>
                                         <span class="pill">Bebida: {{ av.avaliacao_bebida or '-' }}</span>
+                                        <span class="pill">Comida: {{ av.avaliacao_comida or '-' }}</span>
+                                        <span class="pill">Ambiente: {{ av.avaliacao_ambiente or '-' }}</span>
+                                        <span class="pill">Servico: {{ av.avaliacao_servico or '-' }}</span>
                                     </div>
 
                                     {% if av.texto_review %}
@@ -551,8 +559,10 @@
                                         </div>
 
                                         <div class="review-breakdown">
-                                            <span class="pill">Comida: {{ av.avaliacao_comida or '-' }}</span>
                                             <span class="pill">Bebida: {{ av.avaliacao_bebida or '-' }}</span>
+                                            <span class="pill">Comida: {{ av.avaliacao_comida or '-' }}</span>
+                                            <span class="pill">Ambiente: {{ av.avaliacao_ambiente or '-' }}</span>
+                                            <span class="pill">Servico: {{ av.avaliacao_servico or '-' }}</span>
                                         </div>
 
                                         {% if av.texto_review %}
