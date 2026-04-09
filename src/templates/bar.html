@@ -256,6 +256,98 @@
             resize: vertical;
         }
 
+        .rating-field input[type="number"] {
+            display: none;
+        }
+
+        .star-input {
+            display: grid;
+            gap: 10px;
+        }
+
+        .star-track {
+            display: grid;
+            grid-template-columns: repeat(5, 36px);
+            gap: 4px;
+            width: fit-content;
+        }
+
+        .star-option {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .star-option-button {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .star-option-button.left {
+            left: 0;
+        }
+
+        .star-option-button.right {
+            right: 0;
+        }
+
+        .star-option::before {
+            content: "☆";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 36px;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.16);
+            text-align: center;
+        }
+
+        .star-option::after {
+            content: "★";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 36px;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            line-height: 1;
+            color: var(--accent-2);
+            opacity: 0;
+            text-align: center;
+        }
+
+        .star-option.is-active::after {
+            opacity: 1;
+        }
+
+        .star-option.is-half::after {
+            clip-path: inset(0 50% 0 0);
+        }
+
+        .star-option.is-full::after {
+            clip-path: inset(0 0 0 0);
+        }
+
+        .rating-value {
+            color: var(--muted);
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
         .sidebar-header {
             display: flex;
             justify-content: space-between;
@@ -466,24 +558,68 @@
                         >
                             <div class="form-grid">
                                 <div class="form-row">
-                                    <div>
+                                    <div class="rating-field">
                                         <label for="avaliacao_bebida">Bebida</label>
-                                        <input type="number" name="avaliacao_bebida" id="avaliacao_bebida" min="1" max="5" step="0.5" required>
+                                        <div class="star-input" data-rating-input="avaliacao_bebida">
+                                            <input type="number" name="avaliacao_bebida" id="avaliacao_bebida" min="0.5" max="5" step="0.5" required>
+                                            <div class="star-track">
+                                                {% for estrela in [1, 2, 3, 4, 5] %}
+                                                    <div class="star-option" data-star-index="{{ estrela }}">
+                                                        <button type="button" class="star-option-button left" data-value="{{ estrela - 0.5 }}" aria-label="Dar nota {{ estrela - 0.5 }}"></button>
+                                                        <button type="button" class="star-option-button right" data-value="{{ estrela }}" aria-label="Dar nota {{ estrela }}"></button>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <span class="rating-value">Selecione uma nota entre 0,5 e 5,0</span>
+                                        </div>
                                     </div>
 
-                                    <div>
+                                    <div class="rating-field">
                                         <label for="avaliacao_comida">Comida</label>
-                                        <input type="number" name="avaliacao_comida" id="avaliacao_comida" min="1" max="5" step="0.5" required>
+                                        <div class="star-input" data-rating-input="avaliacao_comida">
+                                            <input type="number" name="avaliacao_comida" id="avaliacao_comida" min="0.5" max="5" step="0.5" required>
+                                            <div class="star-track">
+                                                {% for estrela in [1, 2, 3, 4, 5] %}
+                                                    <div class="star-option" data-star-index="{{ estrela }}">
+                                                        <button type="button" class="star-option-button left" data-value="{{ estrela - 0.5 }}" aria-label="Dar nota {{ estrela - 0.5 }}"></button>
+                                                        <button type="button" class="star-option-button right" data-value="{{ estrela }}" aria-label="Dar nota {{ estrela }}"></button>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <span class="rating-value">Selecione uma nota entre 0,5 e 5,0</span>
+                                        </div>
                                     </div>
 
-                                    <div>
+                                    <div class="rating-field">
                                         <label for="avaliacao_ambiente">Ambiente</label>
-                                        <input type="number" name="avaliacao_ambiente" id="avaliacao_ambiente" min="1" max="5" step="0.5" required>
+                                        <div class="star-input" data-rating-input="avaliacao_ambiente">
+                                            <input type="number" name="avaliacao_ambiente" id="avaliacao_ambiente" min="0.5" max="5" step="0.5" required>
+                                            <div class="star-track">
+                                                {% for estrela in [1, 2, 3, 4, 5] %}
+                                                    <div class="star-option" data-star-index="{{ estrela }}">
+                                                        <button type="button" class="star-option-button left" data-value="{{ estrela - 0.5 }}" aria-label="Dar nota {{ estrela - 0.5 }}"></button>
+                                                        <button type="button" class="star-option-button right" data-value="{{ estrela }}" aria-label="Dar nota {{ estrela }}"></button>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <span class="rating-value">Selecione uma nota entre 0,5 e 5,0</span>
+                                        </div>
                                     </div>
 
-                                    <div>
+                                    <div class="rating-field">
                                         <label for="avaliacao_servico">Servico</label>
-                                        <input type="number" name="avaliacao_servico" id="avaliacao_servico" min="1" max="5" step="0.5" required>
+                                        <div class="star-input" data-rating-input="avaliacao_servico">
+                                            <input type="number" name="avaliacao_servico" id="avaliacao_servico" min="0.5" max="5" step="0.5" required>
+                                            <div class="star-track">
+                                                {% for estrela in [1, 2, 3, 4, 5] %}
+                                                    <div class="star-option" data-star-index="{{ estrela }}">
+                                                        <button type="button" class="star-option-button left" data-value="{{ estrela - 0.5 }}" aria-label="Dar nota {{ estrela - 0.5 }}"></button>
+                                                        <button type="button" class="star-option-button right" data-value="{{ estrela }}" aria-label="Dar nota {{ estrela }}"></button>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <span class="rating-value">Selecione uma nota entre 0,5 e 5,0</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -612,6 +748,37 @@
                     : 'Ver mais {{ avaliacoes|length - 3 }} avaliações';
             });
         }
+
+        const ratingInputs = document.querySelectorAll('[data-rating-input]');
+
+        ratingInputs.forEach((ratingField) => {
+            const input = ratingField.querySelector('input');
+            const valueLabel = ratingField.querySelector('.rating-value');
+            const stars = ratingField.querySelectorAll('.star-option');
+            const buttons = ratingField.querySelectorAll('.star-option-button');
+
+            const updateRating = (value) => {
+                const numericValue = Number(value);
+                input.value = numericValue;
+                stars.forEach((star, index) => {
+                    const starValue = index + 1;
+                    star.classList.remove('is-active', 'is-half', 'is-full');
+
+                    if (numericValue >= starValue) {
+                        star.classList.add('is-active', 'is-full');
+                    } else if (numericValue === starValue - 0.5) {
+                        star.classList.add('is-active', 'is-half');
+                    }
+                });
+                valueLabel.textContent = `Nota selecionada: ${numericValue.toFixed(1).replace('.', ',')} / 5,0`;
+            };
+
+            buttons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    updateRating(button.dataset.value);
+                });
+            });
+        });
     </script>
 </body>
 </html>
