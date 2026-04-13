@@ -3,225 +3,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Perfil | Saideira</title>
+    <title>Minha Area | Saideira</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --primary-amber: #d4af37;
-            --accent-red: #d32f2f;
-            --text-light: #f4f4f4;
-            --text-muted: #888;
-            --input-bg: #0a0a0a;
-            --border-color: rgba(212, 175, 55, 0.2);
+            --bg: #120f0c;
+            --bg-soft: #1c1611;
+            --card: rgba(35, 27, 20, 0.94);
+            --card-strong: rgba(48, 36, 26, 0.98);
+            --line: rgba(255, 214, 153, 0.12);
+            --accent: #ef7d32;
+            --accent-2: #ffd166;
+            --text: #fff4e6;
+            --muted: #d2bfab;
+            --danger: #6d2727;
+            --success: #225939;
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
         }
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-light);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 20px;
-            width: 100%;
+        * {
             box-sizing: border-box;
         }
 
-        .profile-header {
-            text-align: center;
-            margin-bottom: 40px;
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(239, 125, 50, 0.18), transparent 26%),
+                radial-gradient(circle at top right, rgba(255, 209, 102, 0.12), transparent 20%),
+                linear-gradient(180deg, #17120d 0%, var(--bg) 100%);
         }
 
-        .profile-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--primary-amber);
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 32px 20px 48px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .topbar a {
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.7fr);
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .hero-card,
+        .panel,
+        .review-card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card,
+        .panel {
+            padding: 26px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 209, 102, 0.1);
+            color: var(--accent-2);
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1,
+        h2,
+        h3 {
             margin: 0;
         }
 
-        .profile-header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
+        h1 {
+            margin-top: 16px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.8rem, 5vw, 4.6rem);
+            letter-spacing: 0.04em;
+            line-height: 0.95;
         }
 
-        .profile-card {
-            background-color: var(--card-bg);
-            border-radius: 24px;
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        .hero-copy {
+            margin: 16px 0 0;
+            color: var(--muted);
+            max-width: 56ch;
+            line-height: 1.7;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            border-radius: 20px;
+            background: var(--card-strong);
+            border: 1px solid var(--line);
+        }
+
+        .stat-label {
+            display: block;
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-2);
+            line-height: 1.1;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .section-copy {
+            margin: 6px 0 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .messages {
+            margin-bottom: 18px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .msg {
+            padding: 14px 16px;
+            border-radius: 14px;
+            font-weight: 700;
+        }
+
+        .msg.sucesso {
+            background: var(--success);
+        }
+
+        .msg.erro {
+            background: var(--danger);
+        }
+
+        form {
+            display: grid;
+            gap: 16px;
+            margin-top: 20px;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 16px;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group.full-width {
-            grid-column: span 2;
+        .full-width {
+            grid-column: 1 / -1;
         }
 
         label {
-            color: var(--primary-amber);
-            font-weight: bold;
+            display: block;
+            margin-bottom: 6px;
+            color: var(--muted);
             font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         input {
-            background-color: var(--input-bg);
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 15px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary-amber);
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-        }
-
-        .password-section {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 12px 14px;
+            background: rgba(15, 11, 8, 0.7);
+            color: var(--text);
+            font: inherit;
         }
 
         .helper-text {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 5px;
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.5;
         }
 
         .actions {
-            margin-top: 40px;
             display: flex;
-            gap: 15px;
-            justify-content: flex-end;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 10px;
         }
 
         .btn {
-            padding: 15px 35px;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             border: none;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.18s ease;
         }
 
-        .btn-save {
-            background-color: var(--primary-amber);
-            color: #000;
+        .btn:hover {
+            transform: translateY(-1px);
         }
 
-        .btn-save:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #ff9f45 100%);
+            color: #23160f;
         }
 
-        .btn-cancel {
-            background-color: transparent;
-            color: var(--text-muted);
-            border: 1px solid #333;
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.14);
         }
 
-        .btn-cancel:hover {
-            background-color: #222;
-            color: white;
+        .reviews-list {
+            display: grid;
+            gap: 16px;
+            margin-top: 20px;
         }
 
-        /* Flash Messages */
-        .messages {
-            margin-bottom: 20px;
+        .review-card {
+            padding: 20px;
         }
-        .msg {
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .sucesso { background: #1f5c34; color: white; }
-        .erro { background: #5c1f1f; color: white; }
 
-        @media (max-width: 600px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
-            .profile-header h1 { font-size: 2.2rem; }
+        .review-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .review-top a {
+            color: var(--text);
+        }
+
+        .review-meta {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+
+        .review-score {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(239, 125, 50, 0.12);
+            color: var(--accent-2);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .review-breakdown {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .pill {
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .review-text {
+            margin: 0;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        .empty-state {
+            margin-top: 20px;
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px dashed rgba(255, 255, 255, 0.14);
+            background: rgba(0, 0, 0, 0.12);
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 980px) {
+            .hero,
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                padding: 24px 14px 36px;
+            }
+
+            .hero-card,
+            .panel,
+            .review-card {
+                padding: 18px;
+            }
+
+            .stats-grid,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .review-top,
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <div class="profile-header">
-            <h1>Configurações da Conta</h1>
-            <p>Gerencie seus dados pessoais e preferências de segurança.</p>
+    <div class="page">
+        <div class="topbar">
+            <a href="{{ url_for('home') }}">Voltar para a pagina inicial</a>
+            <a href="{{ url_for('sair') }}">Sair da conta</a>
         </div>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <div class="messages">
-              {% for category, message in messages %}
-                <div class="msg {{ category }}">{{ message }}</div>
-              {% endfor %}
+        <section class="hero">
+            <div class="hero-card">
+                <span class="eyebrow">Area do usuario</span>
+                <h1>{{ usuario.nome }}</h1>
+                <p class="hero-copy">
+                    Atualize seus dados, acompanhe seu historico de reviews e veja como voce tem avaliado os bares da plataforma.
+                </p>
             </div>
-          {% endif %}
-        {% endwith %}
 
-        <div class="profile-card">
-            <form action="{{ url_for('editar_perfil') }}" method="POST">
-                <div class="form-grid">
-                    <div class="form-group full-width">
-                        <label for="nome">Nome Completo</label>
-                        <input type="text" id="nome" name="nome" value="{{ usuario.nome }}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">E-mail de Acesso</label>
-                        <input type="email" id="email" name="email" value="{{ usuario.email }}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="idade">Sua Idade</label>
-                        <input type="number" id="idade" name="idade" value="{{ usuario.idade }}" min="18" required>
-                    </div>
-
-                    <div class="form-group full-width password-section">
-                        <label for="senha">Alterar Senha</label>
-                        <input type="password" id="senha" name="senha" placeholder="••••••••">
-                        <p class="helper-text">Deixe este campo vazio se não desejar alterar sua senha atual.</p>
-                    </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Reviews feitas</span>
+                    <span class="stat-value">{{ avaliacoes_usuario|length }}</span>
                 </div>
-
-                <div class="actions">
-                    <a href="{{ url_for('home') }}" class="btn btn-cancel">Voltar</a>
-                    <button type="submit" class="btn btn-save">Salvar Alterações</button>
+                <div class="stat-card">
+                    <span class="stat-label">Media das notas</span>
+                    <span class="stat-value">{{ media_usuario if media_usuario is not none else '-' }}</span>
                 </div>
-            </form>
-        </div>
+                <div class="stat-card">
+                    <span class="stat-label">Conta desde</span>
+                    <span class="stat-value">{{ usuario.data_criacao.strftime('%m/%y') }}</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="panel">
+                <h2>Editar perfil</h2>
+                <p class="section-copy">Mantenha seu nome, email, idade e senha sempre atualizados.</p>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="messages">
+                            {% for category, message in messages %}
+                                <div class="msg {{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                <form action="{{ url_for('editar_perfil') }}" method="POST">
+                    <div class="form-grid">
+                        <div class="full-width">
+                            <label for="nome">Nome completo</label>
+                            <input type="text" id="nome" name="nome" value="{{ usuario.nome }}" required>
+                        </div>
+
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="{{ usuario.email }}" required>
+                        </div>
+
+                        <div>
+                            <label for="idade">Idade</label>
+                            <input type="number" id="idade" name="idade" value="{{ usuario.idade }}" min="18" required>
+                        </div>
+
+                        <div class="full-width">
+                            <label for="senha">Nova senha</label>
+                            <input type="password" id="senha" name="senha" placeholder="Deixe em branco para manter a atual">
+                            <p class="helper-text">Preencha apenas se quiser trocar sua senha.</p>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button type="submit" class="btn btn-primary">Salvar alteracoes</button>
+                        <a href="{{ url_for('home') }}" class="btn btn-secondary">Voltar</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h2>Minhas avaliacoes</h2>
+                <p class="section-copy">Veja tudo o que voce ja publicou e acesse rapidamente cada bar avaliado.</p>
+
+                {% if avaliacoes_usuario %}
+                    <div class="reviews-list">
+                        {% for av in avaliacoes_usuario %}
+                            <article class="review-card">
+                                <div class="review-top">
+                                    <div>
+                                        <h3>
+                                            <a href="{{ url_for('detalhes_bar', bar_id=av.bar.id) }}">{{ av.bar.nome }}</a>
+                                        </h3>
+                                        <div class="review-meta">{{ av.data_avaliacao.strftime('%d/%m/%Y') }}</div>
+                                    </div>
+                                    <div class="review-score">{{ av.nota }} / 5</div>
+                                </div>
+
+                                <div class="review-breakdown">
+                                    <span class="pill">Bebida: {{ av.avaliacao_bebida or '-' }}</span>
+                                    <span class="pill">Comida: {{ av.avaliacao_comida or '-' }}</span>
+                                    <span class="pill">Ambiente: {{ av.avaliacao_ambiente or '-' }}</span>
+                                    <span class="pill">Servico: {{ av.avaliacao_servico or '-' }}</span>
+                                </div>
+
+                                {% if av.texto_review %}
+                                    <p class="review-text">{{ av.texto_review }}</p>
+                                {% else %}
+                                    <p class="review-text">Sem comentario escrito, mas com avaliacao registrada.</p>
+                                {% endif %}
+                            </article>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        Voce ainda nao publicou nenhuma review. Quando avaliar um bar, elas vao aparecer aqui.
+                    </div>
+                {% endif %}
+            </div>
+        </section>
     </div>
-
 </body>
 </html>

@@ -96,25 +96,21 @@ def acesso():
 
 @app.route('/perfil', methods=['GET', 'POST'])
 def editar_perfil():
-    # 1. Verificação de Sessão: Se não estiver logado, vai para o login
     if 'usuario_id' not in session:
         return redirect(url_for('acesso'))
     
     usuario = Usuario.query.get(session['usuario_id'])
     
-    # 2. Lógica de Salvamento (Quando o usuário envia o formulário)
     if request.method == 'POST':
         nome = request.form.get('nome', '').strip()
         email = request.form.get('email', '').strip().lower()
         idade_texto = request.form.get('idade', '').strip()
         nova_senha = request.form.get('senha', '')
 
-        # Validações básicas
         if not nome or not email or not idade_texto:
             flash('Campos obrigatórios não preenchidos.', 'erro')
             return redirect(url_for('editar_perfil'))
 
-        # Verifica se o email novo já pertence a outra pessoa
         usuario_existente = Usuario.query.filter_by(email=email).first()
         if usuario_existente and usuario_existente.id != usuario.id:
             flash('Este email já está em uso.', 'erro')
@@ -125,22 +121,36 @@ def editar_perfil():
             usuario.email = email
             usuario.idade = int(idade_texto)
             
-            # Só altera a senha se o usuário digitou algo no campo
             if nova_senha:
                 usuario.set_senha(nova_senha)
 
             db.session.commit()
-            session['usuario_nome'] = usuario.nome # Atualiza o nome na barra superior
+            session['usuario_nome'] = usuario.nome
             flash('Perfil atualizado com sucesso!', 'sucesso')
             return redirect(url_for('editar_perfil'))
             
-        except Exception as e:
+        except Exception:
             db.session.rollback()
             flash('Erro ao atualizar perfil.', 'erro')
             return redirect(url_for('editar_perfil'))
 
-    # 3. Lógica de Exibição (GET): Renderiza a página com os dados do usuário
-    return render_template('perfil.html', usuario=usuario)
+    avaliacoes_usuario = Avaliacao.query.filter_by(usuario_id=usuario.id).order_by(
+        Avaliacao.data_avaliacao.desc()
+    ).all()
+
+    media_usuario = None
+    if avaliacoes_usuario:
+        media_usuario = round(
+            sum(avaliacao.nota for avaliacao in avaliacoes_usuario) / len(avaliacoes_usuario),
+            1
+        )
+
+    return render_template(
+        'perfil.html',
+        usuario=usuario,
+        avaliacoes_usuario=avaliacoes_usuario,
+        media_usuario=media_usuario
+    )
 
 @app.route('/bar/adicionar', methods=['GET', 'POST'])
 def adicionar_bar():
