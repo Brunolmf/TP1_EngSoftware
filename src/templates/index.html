@@ -216,6 +216,26 @@
             </a>
             {% endfor %}
         </div>
+
+        {% if total_pages > 1 %}
+        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 30px;">
+            {% if page > 1 %}
+                <a href="{{ url_for('home', page=page-1, q=termo_busca) }}" class="btn" style="padding: 10px 20px; background-color: #333; color: white; text-decoration: none; border-radius: 5px;">Anterior</a>
+            {% else %}
+                <span style="padding: 10px 20px; background-color: #ccc; color: #666; border-radius: 5px; cursor: not-allowed;">Anterior</span>
+            {% endif %}
+
+            <span style="font-weight: bold; color: white;">
+                Página {{ page }} de {{ total_pages }}
+            </span>
+
+            {% if page < total_pages %}
+                <a href="{{ url_for('home', page=page+1, q=termo_busca) }}" class="btn" style="padding: 10px 20px; background-color: #333; color: white; text-decoration: none; border-radius: 5px;">Próxima</a>
+            {% else %}
+                <span style="padding: 10px 20px; background-color: #ccc; color: #666; border-radius: 5px; cursor: not-allowed;">Próxima</span>
+            {% endif %}
+        </div>
+        {% endif %}
         {% endif %}
     </div>
 

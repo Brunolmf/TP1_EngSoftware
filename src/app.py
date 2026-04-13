@@ -1,5 +1,7 @@
 import os
 import re
+import math
+import time
 from flask import flash 
 from flask import Flask, render_template, request, session, redirect, url_for
 from dotenv import load_dotenv
@@ -34,6 +36,10 @@ with app.app_context():
 def home():
     termo_busca = request.args.get('q', '').strip()
 
+    # paginação de bares
+    page = request.args.get('page', 1, type=int)
+    per_page = 12
+
     # Busca o objeto do usuário logado para verificar se é admin no template
     usuario_logado = None
     if 'usuario_id' in session:
@@ -67,12 +73,21 @@ def home():
             bares_destaque.append(bar_dict)
         else:
             outros_bares.append(bar_dict)
+
+    total_outros = len(outros_bares)
+    total_pages = (total_outros + per_page - 1) // per_page 
+
+    inicio = (page - 1) * per_page
+    fim = inicio + per_page
+    outros_bares_paginados = outros_bares[inicio:fim]
             
     return render_template('index.html', 
                            bares_destaque=bares_destaque, 
-                           outros_bares=outros_bares, 
+                           outros_bares=outros_bares_paginados, 
                            termo_busca=termo_busca,
-                           usuario_logado=usuario_logado)
+                           usuario_logado=usuario_logado,
+                           page=page,
+                           total_pages=total_pages)
 
 @app.route('/acesso', methods=['GET', 'POST'])
 def acesso():
