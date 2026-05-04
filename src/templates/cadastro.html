@@ -4,110 +4,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criar conta | Saideira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --primary-amber: #d4af37;
+            --accent-bordo: #800020;
+            --text-light: #f4f4f4;
+            --text-muted: #b7b7b7;
+            --input-bg: #111111;
+            --line: rgba(212, 175, 55, 0.18);
+            --danger: #5c1f1f;
+            --success: #1f5c34;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a1a;
-            color: #f4f4f4;
             margin: 0;
             padding: 40px 20px;
+            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-light);
+            background:
+                radial-gradient(circle at top left, rgba(128, 0, 32, 0.28), transparent 24%),
+                linear-gradient(180deg, #171717 0%, var(--bg-color) 100%);
         }
-        .container {
-            max-width: 480px;
+
+        .wrapper {
+            max-width: 520px;
             margin: 0 auto;
-            background-color: #262626;
-            padding: 32px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
         }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
         h1 {
             margin-top: 0;
-            color: #d32f2f;
+            margin-bottom: 12px;
+            color: var(--primary-amber);
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            line-height: 1.1;
         }
+
+        p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
         form {
             display: grid;
             gap: 16px;
+            margin-top: 24px;
         }
+
         label {
             display: block;
             margin-bottom: 6px;
-            font-weight: bold;
+            color: var(--primary-amber);
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
+
         input {
             width: 100%;
-            box-sizing: border-box;
-            padding: 12px;
-            border: 1px solid #444;
-            border-radius: 8px;
-            background-color: #111;
-            color: #f4f4f4;
+            padding: 12px 14px;
+            border: 1px solid #3a3a3a;
+            border-radius: 10px;
+            background-color: var(--input-bg);
+            color: var(--text-light);
+            font: inherit;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-amber);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+        }
+
+        small {
+            display: block;
+            margin-top: 8px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
         button {
+            display: inline-block;
+            width: 100%;
             padding: 14px;
             border: none;
-            border-radius: 8px;
-            background-color: #d32f2f;
-            color: white;
+            border-radius: 10px;
+            background-color: var(--primary-amber);
+            color: var(--bg-color);
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 700;
+            font-family: inherit;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
+
+        button:hover {
+            filter: brightness(1.05);
+            transform: translateY(-1px);
+        }
+
         .mensagem {
             padding: 12px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 16px;
+            font-weight: 700;
         }
+
         .erro {
-            background-color: #5c1f1f;
+            background-color: var(--danger);
         }
+
         .sucesso {
-            background-color: #1f5c34;
+            background-color: var(--success);
         }
-        a {
-            color: #f4f4f4;
+
+        .voltar {
+            display: inline-block;
+            margin-top: 24px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .voltar:hover {
+            color: var(--primary-amber);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Criar conta</h1>
-        <p>Preencha seus dados para entrar no Saideira.</p>
+    <div class="wrapper">
+        <div class="card">
+            <h1>Criar conta</h1>
+            <p>Preencha seus dados para entrar no Saideira.</p>
 
-        {% if erro %}
-            <div class="mensagem erro">{{ erro }}</div>
-        {% endif %}
+            {% if erro %}
+                <div class="mensagem erro">{{ erro }}</div>
+            {% endif %}
 
-        {% if sucesso %}
-            <div class="mensagem sucesso">{{ sucesso }}</div>
-        {% endif %}
+            {% if sucesso %}
+                <div class="mensagem sucesso">{{ sucesso }}</div>
+            {% endif %}
 
-        <form method="POST">
-            <div>
-                <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" required>
-            </div>
+            <form method="POST">
+                <div>
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" value="{{ request.form.get('nome', '') }}" required>
+                </div>
 
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{ request.form.get('email', '') }}" required>
+                </div>
 
-            <div>
-                <label for="idade">Idade</label>
-                <input type="number" id="idade" name="idade" min="18" required>
-            </div>
+                <div>
+                    <label for="idade">Idade</label>
+                    <input type="number" id="idade" name="idade" min="18" value="{{ request.form.get('idade', '') }}" required>
+                </div>
 
-            <div>
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" minlength="8" required>
-                <small>A senha deve ter pelo menos 8 caracteres, com maiuscula, minuscula, numero e simbolo.</small>
-            </div>
+                <div>
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" minlength="8" required>
+                    <small>A senha deve ter pelo menos 8 caracteres, com maiuscula, minuscula, numero e simbolo.</small>
+                </div>
 
+                <button type="submit">Criar conta</button>
+            </form>
 
-            <button type="submit">Criar conta</button>
-        </form>
-
-        <p><a href="/">Voltar para a pagina inicial</a></p>
+            <a href="/" class="voltar">Voltar para a pagina inicial</a>
+        </div>
     </div>
 </body>
 </html>
