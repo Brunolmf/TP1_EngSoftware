@@ -332,6 +332,10 @@ def deletar_usuario(id):
         return redirect(url_for('admin_usuarios'))
 
     try:
+        Estabelecimento.query.filter_by(adicionado_por=usuario_para_deletar.id).update(
+            {'adicionado_por': None},
+            synchronize_session=False
+        )
         db.session.delete(usuario_para_deletar)
         db.session.commit()
         flash(f'Usuário {usuario_para_deletar.nome} removido com sucesso!', 'sucesso')

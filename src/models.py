@@ -17,7 +17,12 @@ class Usuario(db.Model):
     data_criacao = db.Column(db.DateTime, default=lambda: datetime.now(timezone.utc))
     
     # Relacionamento: Um usuário possui várias avaliações (lista de objetos 'Avaliacao')
-    avaliacoes = db.relationship('Avaliacao', backref='autor', lazy=True)
+    avaliacoes = db.relationship(
+        'Avaliacao',
+        backref='autor',
+        lazy=True,
+        cascade='all, delete-orphan'
+    )
 
     def set_senha(self, senha):
         self.senha_hash = generate_password_hash(senha)
