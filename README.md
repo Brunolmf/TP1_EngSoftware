@@ -35,7 +35,6 @@ Pelo codigo atual, o sistema possui tres eixos principais:
 
 ## Documentacao UML preliminar
 
-Os diagramas abaixo foram revisados a partir do codigo atual em `src/app.py`, `src/models.py`, `src/templates/`, `seed_avaliacoes.py` e `scraper/scraper_bares.py`.
 
 Os dois tipos UML exigidos pelo trabalho estao cobertos por:
 
