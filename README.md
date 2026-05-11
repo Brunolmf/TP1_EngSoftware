@@ -85,10 +85,10 @@ flowchart TD
     H --> L
     C --> P
     L --> P
-    D -. requer login .-> A
+    D -->|requer login| A
     P --> S
-    P -. se usuario.is_admin .-> NB
-    P -. se usuario.is_admin .-> AU
+    P -->|se for admin| NB
+    P -->|se for admin| AU
     AU --> DU
 ```
 
