@@ -4,13 +4,13 @@
 
 ## Sobre o projeto
 
-O **Saideira** e uma aplicacao web em Flask voltada para descoberta e avaliacao de bares em Belo Horizonte. A proposta do sistema e funcionar como um diario social da vida noturna: usuarios podem criar conta, explorar estabelecimentos, publicar reviews com notas por categoria e acompanhar a reputacao de cada lugar.
+O **Saideira** e uma aplicação web em Flask voltada para descoberta e avaliação de bares em Belo Horizonte. A proposta do sistema e funcionar como um diario social da vida noturna: usuários podem criar conta, explorar estabelecimentos, publicar reviews com notas por categoria e acompanhar a reputacao de cada lugar.
 
 Pelo codigo atual, o sistema possui tres eixos principais:
 
 - exploracao publica de bares e avaliacoes
 - autenticacao e gerenciamento de perfil
-- administracao de estabelecimentos e usuarios
+- administracao de estabelecimentos e usuários
 
 ## Tecnologias
 
@@ -28,10 +28,10 @@ Pelo codigo atual, o sistema possui tres eixos principais:
 - visualizar detalhes e avaliacoes de um bar
 - criar conta com validacao de idade minima
 - fazer login e logout com sessao Flask
-- editar perfil do usuario
-- publicar avaliacao com notas separadas para bebida, comida, ambiente e servico
+- editar perfil do usuário
+- publicar avaliação com notas separadas para bebida, comida, ambiente e servico
 - cadastrar novos estabelecimentos como administrador
-- listar e remover usuarios como administrador
+- listar e remover usuários como administrador
 
 ## Documentacao UML preliminar
 
@@ -67,7 +67,7 @@ flowchart TD
         L
     end
 
-    subgraph UsuarioAutenticado["Usuario autenticado"]
+    subgraph UsuarioAutenticado["Usuário autenticado"]
         P
         A
         S
@@ -93,14 +93,14 @@ flowchart TD
 
 ### 2. Visao de componentes e responsabilidades
 
-Este diagrama mostra como a aplicacao web se organiza entre interface, camada Flask, modelos, banco e scripts auxiliares.
+Este diagrama mostra como a aplicação web se organiza entre interface, camada Flask, modelos, banco e scripts auxiliares.
 
 ```mermaid
 flowchart TD
     Browser["Browser (cliente)<br/>HTML renderizado, formularios e requisicoes HTTP"]
     Flask["Flask - src/app.py<br/>rotas, sessao, validacoes e renderizacao"]
-    Models["SQLAlchemy - src/models.py<br/>Usuario, Estabelecimento e Avaliacao"]
-    DB[("Banco de dados relacional<br/>SQLite/PostgreSQL")]
+    Models["SQLAlchemy - src/models.py<br/>Usuario, Estabelecimento e avaliação"]
+    DB[("Banco de dados relacional<br/>SQLite/PostgreSQL")]?
     Seed["seed_avaliacoes.py<br/>gera avaliacoes de teste"]
     Scraper["scraper/scraper_bares.py<br/>coleta bares em JSON"]
     JSON["arquivo JSON local<br/>base coletada externamente"]
@@ -115,7 +115,7 @@ flowchart TD
 
 ### 3. Diagrama de classes do dominio
 
-Este e o diagrama UML mais importante para entender o nucleo do sistema e a relacao entre usuarios, bares e reviews.
+Este e o diagrama UML mais importante para entender o núcleo do sistema e a relação entre usuários, bares e reviews.
 
 ```mermaid
 classDiagram
@@ -158,9 +158,9 @@ classDiagram
     Usuario "0..1" --> "0..*" Estabelecimento : cadastra
 ```
 
-### 4. Diagrama de sequencia do fluxo de avaliacao
+### 4. Diagrama de sequencia do fluxo de avaliação
 
-Este diagrama detalha a operacao central do sistema: publicar uma avaliacao de um bar.
+Este diagrama detalha a operação central do sistema: publicar uma avaliação de um bar.
 
 ```mermaid
 sequenceDiagram
@@ -184,7 +184,7 @@ sequenceDiagram
             F-->>B: redireciona para /bar/{id}
         else dados validos
             F->>F: calcula nota final = media das 4 categorias
-            F->>DB: insere nova avaliacao
+            F->>DB: insere nova avaliação
             DB-->>F: commit confirmado
             F-->>B: redireciona para /bar/{id}
             B-->>U: exibe review publicada
@@ -192,20 +192,20 @@ sequenceDiagram
     end
 ```
 
-## Regras de negocio observadas no codigo
+## Regras de negocio 
 
 - o cadastro exige idade minima de 18 anos
-- o sistema tambem rejeita idades maiores ou iguais a 125 anos
-- o email do usuario deve ser unico
-- uma avaliacao so e aceita quando as quatro categorias sao informadas
-- a `nota` final da avaliacao e a media aritmetica de bebida, comida, ambiente e servico
+- o sistema também rejeita idades maiores ou iguais a 125 anos
+- o email do usuario deve ser único
+- uma avaliação só é aceita quando as quatro categorias são informadas
+- a `nota` final da avaliação é a media aritmetica de bebida, comida, ambiente e serviço
 - apenas administradores podem cadastrar bares
 - apenas administradores podem acessar o painel de usuarios
-- administradores nao podem ser removidos pelo fluxo de exclusao
-- ao deletar um usuario comum, os estabelecimentos cadastrados por ele nao sao apagados; o campo `adicionado_por` passa para `NULL`
-- a sessao Flask armazena `usuario_id` e `usuario_nome` para controle de autenticacao
+- administradores não podem ser removidos pelo fluxo de exclusão
+- ao deletar um usuário comum, os estabelecimentos cadastrados por ele não são apagados; o campo `adicionado_por` passa para `NULL`
+- a sessão Flask armazena `usuario_id` e `usuario_nome` para controle de autenticação
 
-## Estrutura resumida do repositorio
+## Estrutura resumida do repositório
 
 ```text
 .
@@ -222,16 +222,16 @@ sequenceDiagram
     `-- templates/
 ```
 
-## Historias de usuario atendidas
+## Histórias de usuário atendidas
 
-- como visitante, quero buscar bares disponiveis para conhecer a plataforma
-- como usuario, quero criar conta usando email e senha
-- como usuario registrado, quero fazer login com email e senha
-- como usuario autenticado, quero editar meus dados pessoais
-- como usuario autenticado, quero avaliar bares em categorias separadas
-- como usuario, quero visualizar avaliacoes publicadas sobre um estabelecimento
+- como visitante, quero buscar bares disponíveis para conhecer a plataforma
+- como usuário, quero criar conta usando email e senha
+- como usuário registrado, quero fazer login com email e senha
+- como usuário autenticado, quero editar meus dados pessoais
+- como usuário autenticado, quero avaliar bares em categorias separadas
+- como usuário, quero visualizar avaliações publicadas sobre um estabelecimento
 - como administrador, quero adicionar novos bares
-- como administrador, quero consultar e remover usuarios comuns
+- como administrador, quero consultar e remover usuários comuns
 
 ## Ferramentas de apoio utilizadas no desenvolvimento
 

@@ -132,9 +132,23 @@ def editar_perfil():
             return redirect(url_for('editar_perfil'))
 
         try:
+            idade = int(idade_texto)
+        except ValueError:
+            flash('Idade inválida.', 'erro')
+            return redirect(url_for('editar_perfil'))
+
+        if idade < 18:
+            flash('Você precisa ter pelo menos 18 anos.', 'erro')
+            return redirect(url_for('editar_perfil'))
+
+        if idade >= 125:
+            flash('Digite uma idade válida.', 'erro')
+            return redirect(url_for('editar_perfil'))
+
+        try:
             usuario.nome = nome
             usuario.email = email
-            usuario.idade = int(idade_texto)
+            usuario.idade = idade
             
             if nova_senha:
                 usuario.set_senha(nova_senha)
@@ -280,6 +294,9 @@ def avaliar_bar(bar_id):
     ]
 
     if any(nota is None for nota in categorias):
+        return redirect(url_for('detalhes_bar', bar_id=bar_id))
+
+    if any(not math.isfinite(nota) or nota < 0.5 or nota > 5.0 for nota in categorias):
         return redirect(url_for('detalhes_bar', bar_id=bar_id))
 
     nota = round(sum(categorias) / len(categorias), 1)
