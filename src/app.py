@@ -1,38 +1,73 @@
-import os
-import re
 import math
-import time
-from flask import flash 
+import os
+
+from flask import flash
 from flask import Flask, render_template, request, session, redirect, url_for
 from dotenv import load_dotenv
-from models import db, Usuario, Estabelecimento, Avaliacao
-from sqlalchemy import func
-from sqlalchemy import text
+from sqlalchemy import func, inspect, text
+
+try:
+    from .models import db, Usuario, Estabelecimento, Avaliacao
+except ImportError:
+    from models import db, Usuario, Estabelecimento, Avaliacao
 
 load_dotenv()
 
-app = Flask(__name__)
+def _get_database_uri():
+    return os.getenv('DATABASE_URL', 'sqlite:///saideira.db')
 
-# Configurações de Segurança
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'boteco_secreto_123')
 
-db.init_app(app)
-
-with app.app_context():
+def _initialize_database():
     db.create_all()
-    db.session.execute(text(
-        "ALTER TABLE avaliacoes "
-        "ADD COLUMN IF NOT EXISTS avaliacao_ambiente FLOAT"
-    ))
-    db.session.execute(text(
-        "ALTER TABLE avaliacoes "
-        "ADD COLUMN IF NOT EXISTS avaliacao_servico FLOAT"
-    ))
+
+    inspector = inspect(db.engine)
+    if 'avaliacoes' not in inspector.get_table_names():
+        return
+
+    colunas_existentes = {
+        coluna['name'] for coluna in inspector.get_columns('avaliacoes')
+    }
+    colunas_opcionais = {
+        'avaliacao_ambiente': 'FLOAT',
+        'avaliacao_servico': 'FLOAT',
+    }
+
+    alteracoes_pendentes = []
+    for nome_coluna, tipo_coluna in colunas_opcionais.items():
+        if nome_coluna not in colunas_existentes:
+            alteracoes_pendentes.append(
+                text(f'ALTER TABLE avaliacoes ADD COLUMN {nome_coluna} {tipo_coluna}')
+            )
+
+    if not alteracoes_pendentes:
+        return
+
+    for alteracao in alteracoes_pendentes:
+        db.session.execute(alteracao)
+
     db.session.commit()
 
-@app.route('/')
+
+def create_app(test_config=None):
+    app = Flask(__name__)
+    app.config.from_mapping(
+        SQLALCHEMY_DATABASE_URI=_get_database_uri(),
+        SQLALCHEMY_TRACK_MODIFICATIONS=False,
+        SECRET_KEY=os.getenv('SECRET_KEY', 'boteco_secreto_123'),
+        TESTING=False,
+    )
+
+    if test_config:
+        app.config.update(test_config)
+
+    db.init_app(app)
+    register_routes(app)
+
+    with app.app_context():
+        _initialize_database()
+
+    return app
+
 def home():
     termo_busca = request.args.get('q', '').strip()
 
@@ -43,7 +78,7 @@ def home():
     # Busca o objeto do usuário logado para verificar se é admin no template
     usuario_logado = None
     if 'usuario_id' in session:
-        usuario_logado = Usuario.query.get(session['usuario_id'])
+        usuario_logado = db.session.get(Usuario, session['usuario_id'])
 
     # Base da query com a média
     query = db.session.query(
@@ -89,7 +124,6 @@ def home():
                            page=page,
                            total_pages=total_pages)
 
-@app.route('/acesso', methods=['GET', 'POST'])
 def acesso():
     erro = None
     if request.method == 'POST':
@@ -109,12 +143,11 @@ def acesso():
 
     return render_template('acesso.html', erro=erro)
 
-@app.route('/perfil', methods=['GET', 'POST'])
 def editar_perfil():
     if 'usuario_id' not in session:
         return redirect(url_for('acesso'))
     
-    usuario = Usuario.query.get(session['usuario_id'])
+    usuario = db.session.get(Usuario, session['usuario_id'])
     
     if request.method == 'POST':
         nome = request.form.get('nome', '').strip()
@@ -181,13 +214,12 @@ def editar_perfil():
         media_usuario=media_usuario
     )
 
-@app.route('/bar/adicionar', methods=['GET', 'POST'])
 def adicionar_bar():
     if 'usuario_id' not in session:
         flash('Você precisa estar logado para acessar esta página.', 'erro')
         return redirect(url_for('acesso'))
     
-    usuario = Usuario.query.get(session['usuario_id'])
+    usuario = db.session.get(Usuario, session['usuario_id'])
     
     if not getattr(usuario, 'is_admin', False):
         flash('Acesso negado: apenas administradores podem adicionar bares.', 'erro')
@@ -225,7 +257,6 @@ def adicionar_bar():
 
     return render_template('adicionar_bar.html')
 
-@app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     erro = None
     if request.method == 'POST':
@@ -259,12 +290,10 @@ def cadastro():
 
     return render_template('cadastro.html', erro=erro)
 
-@app.route('/sair')
 def sair():
     session.clear() 
     return redirect(url_for('home'))
 
-@app.route('/bar/<int:bar_id>', methods=['GET'])
 def detalhes_bar(bar_id):
     bar = Estabelecimento.query.get_or_404(bar_id)
     avaliacoes = Avaliacao.query.filter_by(estabelecimento_id=bar_id).order_by(
@@ -274,7 +303,6 @@ def detalhes_bar(bar_id):
     
     return render_template('bar.html', bar=bar, avaliacoes=avaliacoes)
 
-@app.route('/bar/<int:bar_id>/avaliar', methods=['POST'])
 def avaliar_bar(bar_id):
     if 'usuario_id' not in session:
         return redirect(url_for('acesso'))
@@ -317,12 +345,11 @@ def avaliar_bar(bar_id):
     
     return redirect(url_for('detalhes_bar', bar_id=bar_id))
 
-@app.route('/admin/usuarios')
 def admin_usuarios():
     if 'usuario_id' not in session:
         return redirect(url_for('acesso'))
     
-    usuario_logado = Usuario.query.get(session['usuario_id'])
+    usuario_logado = db.session.get(Usuario, session['usuario_id'])
     if not usuario_logado or not usuario_logado.is_admin:
         flash('Acesso negado.')
         return redirect(url_for('home'))
@@ -331,12 +358,11 @@ def admin_usuarios():
     todos_usuarios = Usuario.query.order_by(Usuario.nome).all()
     return render_template('admin_usuarios.html', usuarios=todos_usuarios, usuario_logado=usuario_logado)
 
-@app.route('/admin/usuarios/deletar/<int:id>', methods=['POST'])
 def deletar_usuario(id):
     if 'usuario_id' not in session:
         return redirect(url_for('acesso'))
     
-    admin = Usuario.query.get(session['usuario_id'])
+    admin = db.session.get(Usuario, session['usuario_id'])
     if not admin or not admin.is_admin:
         flash('Operação não permitida.')
         return redirect(url_for('home'))
@@ -362,5 +388,24 @@ def deletar_usuario(id):
 
     return redirect(url_for('admin_usuarios'))
 
+
+def register_routes(app):
+    app.add_url_rule('/', view_func=home)
+    app.add_url_rule('/acesso', view_func=acesso, methods=['GET', 'POST'])
+    app.add_url_rule('/perfil', view_func=editar_perfil, methods=['GET', 'POST'])
+    app.add_url_rule('/bar/adicionar', view_func=adicionar_bar, methods=['GET', 'POST'])
+    app.add_url_rule('/cadastro', view_func=cadastro, methods=['GET', 'POST'])
+    app.add_url_rule('/sair', view_func=sair)
+    app.add_url_rule('/bar/<int:bar_id>', view_func=detalhes_bar, methods=['GET'])
+    app.add_url_rule('/bar/<int:bar_id>/avaliar', view_func=avaliar_bar, methods=['POST'])
+    app.add_url_rule('/admin/usuarios', view_func=admin_usuarios)
+    app.add_url_rule(
+        '/admin/usuarios/deletar/<int:id>',
+        view_func=deletar_usuario,
+        methods=['POST'],
+    )
+
+
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True)

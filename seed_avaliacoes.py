@@ -1,13 +1,9 @@
-import os
-import sys
 import random
-from datetime import datetime, timezone
 
-# Adiciona a pasta 'src' ao path do sistema para conseguirmos importar a aplicação
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+from src.app import create_app
+from src.models import db, Estabelecimento, Usuario, Avaliacao
 
-from app import app
-from models import db, Estabelecimento, Usuario, Avaliacao
+app = create_app()
 
 def seed_avaliacoes():
     with app.app_context():

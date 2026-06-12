@@ -21,6 +21,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.pytest_cache/
+.coverage
 
 # Arquivos de sistema operacional (Mac/Windows)
 .DS_Store
