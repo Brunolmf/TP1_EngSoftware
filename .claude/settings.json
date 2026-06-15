@@ -6,7 +6,11 @@
       "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pip install -r requirements-dev.txt 2>&1)",
       "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest 2>&1)",
       "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest --cov --cov-report=term-missing -q 2>&1)",
-      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest tests/test_avaliacoes.py tests/test_perfil.py -v 2>&1)"
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest tests/test_avaliacoes.py tests/test_perfil.py -v 2>&1)",
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -c \"import playwright; print\\('playwright OK', playwright.__version__\\)\" 2>&1)",
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest tests/e2e/test_admin_flow.py -v -m e2e 2>&1)",
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest -q 2>&1)",
+      "PowerShell($env:E2E_HEADLESS = '0'; $env:E2E_SLOWMO = '800'; & .\\\\.venv\\\\Scripts\\\\python.exe -m pytest tests/e2e/test_admin_flow.py -v -m e2e -s 2>&1 | Select-Object -Last 8)"
     ]
   }
 }
