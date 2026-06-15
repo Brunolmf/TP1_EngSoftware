@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(python -m pytest tests/test_admin.py -v)",
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest tests/test_admin.py -v 2>&1)",
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pip install -r requirements-dev.txt 2>&1)",
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest 2>&1)",
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest --cov --cov-report=term-missing -q 2>&1)",
+      "PowerShell(& .\\\\.venv\\\\Scripts\\\\python.exe -m pytest tests/test_avaliacoes.py tests/test_perfil.py -v 2>&1)"
+    ]
+  }
+}
