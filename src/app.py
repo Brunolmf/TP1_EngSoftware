@@ -295,7 +295,7 @@ def sair():
     return redirect(url_for('home'))
 
 def detalhes_bar(bar_id):
-    bar = Estabelecimento.query.get_or_404(bar_id)
+    bar = db.get_or_404(Estabelecimento, bar_id)
     avaliacoes = Avaliacao.query.filter_by(estabelecimento_id=bar_id).order_by(
         Avaliacao.nota.desc(),
         Avaliacao.data_avaliacao.desc()
@@ -307,7 +307,7 @@ def avaliar_bar(bar_id):
     if 'usuario_id' not in session:
         return redirect(url_for('acesso'))
     
-    bar = Estabelecimento.query.get_or_404(bar_id)
+    bar = db.get_or_404(Estabelecimento, bar_id)
     texto_review = request.form.get('texto_review')
     avaliacao_bebida = request.form.get('avaliacao_bebida', type=float)
     avaliacao_comida = request.form.get('avaliacao_comida', type=float)
@@ -367,7 +367,7 @@ def deletar_usuario(id):
         flash('Operação não permitida.')
         return redirect(url_for('home'))
 
-    usuario_para_deletar = Usuario.query.get_or_404(id)
+    usuario_para_deletar = db.get_or_404(Usuario, id)
 
     # Impede que um admin delete a si mesmo ou outro admin por engano (regra de segurança)
     if usuario_para_deletar.is_admin:

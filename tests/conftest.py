@@ -10,7 +10,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.app import create_app
-from src.models import Usuario, db
+from src.models import Estabelecimento, Usuario, db
 
 
 @pytest.fixture()
@@ -69,6 +69,48 @@ def criar_usuario(app):
             }
 
     return _criar_usuario
+
+
+@pytest.fixture()
+def criar_estabelecimento(app):
+    def _criar_estabelecimento(
+        nome='Bar Teste',
+        endereco='Rua da Serra, 123 - Belo Horizonte',
+        foto_url='https://example.com/bar.jpg',
+        faixa_de_preco='$$',
+        adicionado_por=None,
+    ):
+        with app.app_context():
+            estabelecimento = Estabelecimento(
+                nome=nome,
+                endereco=endereco,
+                foto_url=foto_url,
+                faixa_de_preco=faixa_de_preco,
+                adicionado_por=adicionado_por,
+            )
+            db.session.add(estabelecimento)
+            db.session.commit()
+
+            return {
+                'id': estabelecimento.id,
+                'nome': estabelecimento.nome,
+                'endereco': estabelecimento.endereco,
+                'foto_url': estabelecimento.foto_url,
+                'faixa_de_preco': estabelecimento.faixa_de_preco,
+                'adicionado_por': estabelecimento.adicionado_por,
+            }
+
+    return _criar_estabelecimento
+
+
+@pytest.fixture()
+def login_como(client):
+    def _login_como(usuario):
+        with client.session_transaction() as sessao:
+            sessao['usuario_id'] = usuario['id']
+            sessao['usuario_nome'] = usuario['nome']
+
+    return _login_como
 
 
 @pytest.fixture()
